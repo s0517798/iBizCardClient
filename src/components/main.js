@@ -5,6 +5,8 @@ import About from './about';
 import NotFound from './notFound';
 import EditCardForm from './forms/editCardForm';
 import AddCardForm from './forms/addCardForm';
+import SignUpForm from './forms/signUpForm';
+import SignInForm from './forms/signInForm';
 
 
 const Main = () => {
@@ -13,6 +15,8 @@ const Main = () => {
       <Switch>
         <Route path='/about' component={About} />
         <Redirect from='/cards' exact to='/' />
+        <Route path='/sign-up' component={SignUpForm} />
+        <Route path='/sign-in' component={SignInForm} />
         <Route path='/cards/add' component={AddCardForm} />
         <Route path='/cards/edit/:id' component={EditCardForm} />
         <Route path='/not-found' component={NotFound} />
