@@ -4,23 +4,25 @@ import axios from 'axios';
 
 const endPoint = ""
 
-const SignInForm = props => {
+const LoginForm = props => {
 
   
   const initialFormState = {
-    _id: null,
-    email: '',
-    password: ''
+    data: {
+      _id: null,
+      email: '',
+      password: ''
+    }
   }
   
   
-  const [user, setUser] = useState(initialFormState);
+  const [user, setUser] = useState(initialFormState.data);
 
 
   const handleInputChange = e => {
     const { name, value } = e.target;
 
-    setUser({  [name]: value })
+    setUser({ ...user,  [name]: value })
   }
 
 
@@ -32,15 +34,16 @@ const SignInForm = props => {
   const handleSubmit = e => {
       e.preventDefault()
       addUser(user)
+      console.log(addUser(user));
       setUser(initialFormState)
       props.history.push('/')
   }
 
-  const renderInput = (label, name, value) => {
+  const renderInput = (label, name, value, ...rest) => {
     return (
-      <div>
-        <label className="mt-3">{label}</label>
-        <input type='text' className="form-control" name={name} value={value} onChange={handleInputChange} />
+      <div className="form-group">
+        <label htmlFor={name}>{label}</label>
+        <input {...rest} name={name} value={value} onChange={handleInputChange} className="form-control"/>
       </div>
       
     )
@@ -50,7 +53,7 @@ const SignInForm = props => {
   return ( 
     <div>
       <div>
-        <h2>Sign In</h2>
+        <h2>Login Form</h2>
       </div>
       <form
         onSubmit={handleSubmit}
@@ -63,11 +66,11 @@ const SignInForm = props => {
         <Link to='/'>
           <button type='button' className="btn btn-secondary mt-2 mb-2 mr-2">Cancel</button>
         </Link>
-        <button className="btn btn-primary mt-2 mb-2">Sign In</button>
+        <button className="btn btn-primary mt-2 mb-2">Login</button>
       </form>
       
       </div>
    );
 }
  
-export default SignInForm;
+export default LoginForm;

@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-import { endPoint } from '../../config.json'
+import { apiUrl } from '../services/config.json';
+
+const endPoint = apiUrl + '/cards';
 
 const AddCardForm = props => {
 
   // it is like a constructor of default value
   const initialFormState = {
-    _id: null,
       company: '',
       slogan: '',
       name: '',
@@ -15,8 +16,7 @@ const AddCardForm = props => {
       phone: '',
       email: '',
       address: '',
-      website: '',
-      image: ''
+      website: ''
   }
   // default value
   const [card, setCard] = useState(initialFormState);
@@ -30,22 +30,22 @@ const AddCardForm = props => {
     setCard({ ...card, [name]: value })
   }
 
-  // const handleImage = e => {
-  //   const { name } = e.target
-  //   // get the value of the image
-  //   console.log({ ...card, [name]: e.target.files[0]})
-  // }
-
-  const addCard = (card) => {
-    axios.post(endPoint, card)
-    setCard(card)
+  const addCard = async (card) => {
+    try{
+      await axios.post(endPoint, card)
+      setCard(card)
+      props.history.push('/cards')
+    } catch(ex) {
+      console.log(ex);
+    }
   }
 
   const handleSubmit = e => {
       e.preventDefault()
+      if(!card.name || !card.email) return;
       addCard(card)
       setCard(initialFormState)
-      props.history.push('/')
+      // props.history.push('/cards')
   }
 
   const renderInput = (label, name, value) => {
@@ -81,7 +81,7 @@ const AddCardForm = props => {
         {renderInput('Address', 'address', card.address)} 
         {renderInput('Website', 'website', card.website)} 
         
-        <Link to='/'>
+        <Link to='/cards'>
           <button type='button' className="btn btn-secondary mt-2 mb-2 mr-2">Cancel</button>
         </Link>
         <button className="btn btn-primary mt-2 mb-2">Add Card</button>

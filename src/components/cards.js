@@ -3,13 +3,15 @@ import { Link } from 'react-router-dom';
 import { Row, Col } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlusCircle } from '@fortawesome/free-solid-svg-icons'
-import FrontViewCard from '../components/cards/frontViewCard';
-import { endPoint } from '.././config.json'
+
+import { apiUrl } from '.././components/services/config.json';
 import axios from 'axios';
 import '../App.css';
+import CardUI from './cards/cardUI';
 
+const endPoint = apiUrl + '/cards';
 
-function Cards() {
+const Cards = () => {
   const [cards, setCards] = useState([]);
   
   
@@ -58,13 +60,15 @@ console.log(cards);
     <div>
       <Row>
         <Col xs="12" sm="12" md="12">
-          <FrontViewCard cards={cards} deleteCard={deleteCard}/>
+          <CardUI cards={cards} deleteCard={deleteCard}/>
         </Col>
       </Row>
       <div>
-        <Link to='/cards/add'>
+        { cards.length > 0 ? null : 
+          <Link to='/cards/new'>
           <FontAwesomeIcon style={styles.addButton}  icon={faPlusCircle} />
         </Link>
+        }
       </div>
     </div>
   );

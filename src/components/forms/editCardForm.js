@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-import { endPoint } from '../../config.json'
+import { apiUrl } from '../services/config.json';
+
+const endPoint = apiUrl + '/cards';
 
 const EditCardForm = props => {
 
@@ -16,37 +18,42 @@ const EditCardForm = props => {
     email: '',
     address: '',
     website: '',
-    image: ''
   }
 
-  const [card, setCard] = useState(initialFormState);
+  console.log('pros: => ', props);
+
+
+  const [ACard, setACard] = useState(initialFormState);
 
   // handles the input event
   const handleInputChange = e => {
     const { name, value } = e.target;
-    setCard({ ...card, [name]: value })
+    setACard({ ...ACard, [name]: value })
   }
 
   useEffect(() => {
     let mounted = true
-    const displayFormValues = async () => {
-      let cardId = props.match.params.id
+
+    const displayFormValues = async (card) => {
+      const cardId = props.match.params.id
+      const aCard = await axios.get(`${endPoint}/${cardId}`, card )
+      console.log(aCard);
       try {
-        const a = await axios.get(`${endPoint}/${cardId}`)
-        
-        const c = {
+        const editCard = {
           id: cardId,
-          company: a.data.company,
-          slogan: a.data.slogan,
-          name: a.data.name,
-          profession: a.data.profession,
-          phone: a.data.phone,
-          email: a.data.email,
-          address: a.data.address,
-          website: a.data.website,
+          company: aCard.data.company,
+          slogan: aCard.data.slogan,
+          name: aCard.data.name,
+          profession: aCard.data.profession,
+          phone: aCard.data.phone,
+          email: aCard.data.email,
+          address: aCard.data.address,
+          website: aCard.data.website,
         }
+        console.log('edit',editCard);
         if(mounted) {
-          setCard(c)
+          setACard(editCard)
+          
         }
       } catch(ex) {
         console.log(ex);
@@ -63,13 +70,13 @@ const EditCardForm = props => {
 
    // Updating a card
    const updateCard = async (card) => {
-    let cardId = props.match.params.id
+    const cardId = props.match.params.id
     const a = await axios.put(`${endPoint}/${cardId}`, card)
     
     try {
       
       const c = {
-        id: props.match.params.id,
+        id: cardId,
         company: a.data.company,
         slogan: a.data.slogan,
         name: a.data.name,
@@ -79,8 +86,8 @@ const EditCardForm = props => {
         address: a.data.address,
         website: a.data.website,
       }
-      setCard(c)
-      props.history.push('/')
+      setACard(c)
+      props.history.push('/cards')
     } catch(ex) {
       console.log(ex);
     }
@@ -100,9 +107,8 @@ const EditCardForm = props => {
         address: e.target.address.value,
         website: e.target.website.value,
       }
+      setACard(newCard)
       updateCard(newCard)
-      setCard(newCard)
-      
   }
 
   const renderInput = (label, name, value) => {
@@ -114,6 +120,9 @@ const EditCardForm = props => {
     )
   } 
   
+  const goBack = () => {
+    props.history.goBack()
+  }
   
   return ( 
     <div>
@@ -128,18 +137,18 @@ const EditCardForm = props => {
           <label className="custom-file-label" htmlFor="customFile">Choose file</label>
         </div> */}
 
-        {renderInput('Company Name', 'company', card.company, 'company')} 
-        {renderInput('Slogan', 'slogan', card.slogan, 'slogan')} 
-        {renderInput('Name', 'name', card.name, 'name')} 
-        {renderInput('Profession', 'profession', card.profession, 'profession')} 
-        {renderInput('Phone', 'phone', card.phone, 'phone')} 
-        {renderInput('Email', 'email', card.email, 'email')} 
-        {renderInput('Address', 'address', card.address, 'address')} 
-        {renderInput('Website', 'website', card.website, 'website')} 
+        {renderInput('Company Name', 'company', ACard.company, 'company')} 
+        {renderInput('Slogan', 'slogan', ACard.slogan, 'slogan')} 
+        {renderInput('Name', 'name', ACard.name, 'name')} 
+        {renderInput('Profession', 'profession', ACard.profession, 'profession')} 
+        {renderInput('Phone', 'phone', ACard.phone, 'phone')} 
+        {renderInput('Email', 'email', ACard.email, 'email')} 
+        {renderInput('Address', 'address', ACard.address, 'address')} 
+        {renderInput('Website', 'website', ACard.website, 'website')} 
         
-        <Link to='/'>
-          <button type='button' className="btn btn-secondary mt-2 mb-2 mr-2">Cancel</button>
-        </Link>
+        
+        <button onClick={goBack} type='button' className="btn btn-secondary mt-2 mb-2 mr-2">Cancel</button>
+        
         <button type='submit' className="btn btn-primary mt-2 mb-2">Update Card</button>
       </form>
       
