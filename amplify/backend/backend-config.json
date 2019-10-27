@@ -1,0 +1,9 @@
+{
+	"auth": {
+		"ibusinesscardclient7123db3d": {
+			"service": "Cognito",
+			"providerPlugin": "awscloudformation",
+			"dependsOn": []
+		}
+	}
+}

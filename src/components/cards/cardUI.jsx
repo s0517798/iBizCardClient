@@ -15,33 +15,28 @@ const CardUI = (props) => {
     ) 
   }
 
- 
-  
- 
-
-
 
   return ( 
     <div>
-    {props.cards ? props.cards.map(card =>
-      <section key={card._id} id="card">
+    {props.card ? props.card.map(c =>
+      <section key={c._id} id="card">
       <div className="cardContainer container ">
         <div className="companyContainer">
-          <h1>{card.company}</h1>
-          <p>{card.slogan}</p>
+          <h1>{c.company}</h1>
+          <p>{c.slogan}</p>
         </div>
         <div className="nameContainer">
           <div className="name">
             <h3>
-              <a target="blank" href={"http://www.google.com/search?q=" + card.name } >{card.name}l</a>
+              <a target="blank" href={"http://www.google.com/search?q=" + c.name } >{c.name}l</a>
             </h3>
-            <p>{card.profession}</p>
+            <p>{c.profession}</p>
           </div>
           <div className="contactContainer">
             <div className="icons">
               <div id="phone" className="icon">{renderIcon(faPhone)}</div>
               <div className="info">
-                <a href={`tel: + ${card.phone}`}>{card.phone}</a>
+                <a href={`tel: + ${c.phone}`}>{c.phone}</a>
               </div>
             </div>
           </div>
@@ -49,7 +44,7 @@ const CardUI = (props) => {
             <div className="icons">
               <div className="icon">{renderIcon(faEnvelope)}</div>
               <div className="info">
-                <a href={`mailto: + ${card.email}`}>{card.email}</a>
+                <a href={`mailto: + ${c.email}`}>{c.email}</a>
               </div>
             </div>
           </div>
@@ -57,14 +52,14 @@ const CardUI = (props) => {
             <div className="icons">
               <div className="icon">{renderIcon(faGlobe)}</div>
               <div className="info">
-                <a target="blank" href={`http://${card.website}`}>{card.website}</a>
+                <a target="blank" href={`http://${c.website}`}>{c.website}</a>
               </div>
             </div>
           </div>
           <div className="contactContainer">
             <div className="icons">
               <div id="location-location" className="icon">{renderIcon(faMapMarkerAlt, 'lg')}</div>
-              <div id="location-details" className="info">{card.address}</div>
+              <div id="location-details" className="info">{c.address}</div>
             </div>
           </div>
           <div className="modificationCotainer">
@@ -74,13 +69,13 @@ const CardUI = (props) => {
             </Link>
           </div>
           <div className="edit-icon">
-            <Link to={`/cards/${card._id}`} style={{ color: 'inherit'}}>
+            <Link to={`/profile/${c._id}`} style={{ color: 'inherit'}}>
               <FontAwesomeIcon style={{cursor: 'pointer'}} className="mr-2" size="xs" icon={faEdit} />
             </Link>
           </div>
           <div className="delete-icon">
             <Link to='#' style={{ color: 'inherit'}}>
-              <FontAwesomeIcon style={{cursor: 'pointer'}} size="xs" icon={faTrashAlt} onClick={() => props.deleteCard(card)} />          
+              <FontAwesomeIcon style={{cursor: 'pointer'}} size="xs" icon={faTrashAlt} onClick={() => props.deleteCard(c)} />          
             </Link>
           </div>
           </div>

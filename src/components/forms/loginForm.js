@@ -1,42 +1,38 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import axios from 'axios';
+import { Auth } from 'aws-amplify';
 
-const endPoint = ""
-
-const LoginForm = props => {
+const LoginForm = (props) => {
 
   
   const initialFormState = {
-    data: {
-      _id: null,
-      email: '',
+      username: '',
       password: ''
-    }
   }
   
-  
-  const [user, setUser] = useState(initialFormState.data);
+  const [user, setUser] = useState(initialFormState);
 
-
-  const handleInputChange = e => {
+  const handleInputChange = (e) => {
     const { name, value } = e.target;
 
     setUser({ ...user,  [name]: value })
   }
 
-
-  const addUser = (user) => {
-    axios.post(endPoint, user)
-    setUser(user)
-  }
-
-  const handleSubmit = e => {
-      e.preventDefault()
-      addUser(user)
-      console.log(addUser(user));
-      setUser(initialFormState)
-      props.history.push('/')
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    const { username, password } = user;
+    try{
+      const aUser = await Auth.signIn({
+        username, 
+        password,
+      })
+      const jwt = aUser.signInUserSession.idToken.jwtToken
+      localStorage.setItem('token', jwt)
+      console.log('User logged in...');
+      window.location = '/'
+    }catch(ex) {
+      console.log('error signed in', ex);
+    }
   }
 
   const renderInput = (label, name, value, ...rest) => {
@@ -49,27 +45,20 @@ const LoginForm = props => {
     )
   } 
   
-  
   return ( 
     <div>
       <div>
         <h2>Login Form</h2>
       </div>
-      <form
-        onSubmit={handleSubmit}
-      >
-
-        {renderInput('Email', 'email', user.email)} 
+      <form onSubmit={handleSubmit}>
+        {renderInput('Username', 'username', user.username)} 
         {renderInput('Password', 'password', user.password)} 
-        
-        
         <Link to='/'>
           <button type='button' className="btn btn-secondary mt-2 mb-2 mr-2">Cancel</button>
         </Link>
-        <button className="btn btn-primary mt-2 mb-2">Login</button>
+        <button type='submit' className="btn btn-success mt-2 mb-2">Login</button>
       </form>
-      
-      </div>
+    </div>
    );
 }
  

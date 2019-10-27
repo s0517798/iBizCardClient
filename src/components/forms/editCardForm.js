@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { apiUrl } from '../services/config.json';
 
 const endPoint = apiUrl + '/cards';
 
-const EditCardForm = props => {
+const EditCardForm = (props) => {
 
+  console.log('props.user',props.user);
 
   const initialFormState = {
     _id: '',
@@ -50,7 +51,6 @@ const EditCardForm = props => {
           address: aCard.data.address,
           website: aCard.data.website,
         }
-        console.log('edit',editCard);
         if(mounted) {
           setACard(editCard)
           
@@ -87,7 +87,7 @@ const EditCardForm = props => {
         website: a.data.website,
       }
       setACard(c)
-      props.history.push('/cards')
+      props.history.push('/profile')
     } catch(ex) {
       console.log(ex);
     }

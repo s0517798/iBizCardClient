@@ -1,0 +1,19 @@
+{
+    "dev": {
+        "awscloudformation": {
+            "AuthRoleName": "ibusinesscardclient-dev-20191019104442-authRole",
+            "UnauthRoleArn": "arn:aws:iam::756757461835:role/ibusinesscardclient-dev-20191019104442-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::756757461835:role/ibusinesscardclient-dev-20191019104442-authRole",
+            "Region": "us-east-1",
+            "DeploymentBucketName": "ibusinesscardclient-dev-20191019104442-deployment",
+            "UnauthRoleName": "ibusinesscardclient-dev-20191019104442-unauthRole",
+            "StackName": "ibusinesscardclient-dev-20191019104442",
+            "StackId": "arn:aws:cloudformation:us-east-1:756757461835:stack/ibusinesscardclient-dev-20191019104442/fc78b140-f27e-11e9-82da-126c686965ae"
+        },
+        "categories": {
+            "auth": {
+                "ibusinesscardclient7123db3d": {}
+            }
+        }
+    }
+}

@@ -5,6 +5,7 @@ import { apiUrl } from '../services/config.json';
 
 const endPoint = apiUrl + '/cards';
 
+
 const AddCardForm = props => {
 
   // it is like a constructor of default value
@@ -31,10 +32,17 @@ const AddCardForm = props => {
   }
 
   const addCard = async (card) => {
+    let token = localStorage.getItem('token')
     try{
-      await axios.post(endPoint, card)
+      await axios.post(endPoint, card, {
+        headers: {
+          'accessToken': token,
+          'Accept' : 'application/json',
+          'Content-Type': 'application/json'
+        }
+      })
       setCard(card)
-      props.history.push('/cards')
+      props.history.push('/profile')
     } catch(ex) {
       console.log(ex);
     }
@@ -81,7 +89,7 @@ const AddCardForm = props => {
         {renderInput('Address', 'address', card.address)} 
         {renderInput('Website', 'website', card.website)} 
         
-        <Link to='/cards'>
+        <Link to='/profile'>
           <button type='button' className="btn btn-secondary mt-2 mb-2 mr-2">Cancel</button>
         </Link>
         <button className="btn btn-primary mt-2 mb-2">Add Card</button>

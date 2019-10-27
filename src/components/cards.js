@@ -60,12 +60,12 @@ console.log(cards);
     <div>
       <Row>
         <Col xs="12" sm="12" md="12">
-          <CardUI cards={cards} deleteCard={deleteCard}/>
+          <CardUI card={cards} deleteCard={deleteCard}/>
         </Col>
       </Row>
       <div>
         { cards.length > 0 ? null : 
-          <Link to='/cards/new'>
+          <Link to='profile/new'>
           <FontAwesomeIcon style={styles.addButton}  icon={faPlusCircle} />
         </Link>
         }
