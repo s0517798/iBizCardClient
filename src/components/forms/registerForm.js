@@ -55,7 +55,7 @@ const RegisterForm = () => {
     try{
       await Auth.confirmSignUp(user.username, user.authCode)
       console.log('successful sign up');
-      window.location = '/authenticator';      
+      window.location = '/';      
     }catch(ex) {
       console.log(ex);
     }

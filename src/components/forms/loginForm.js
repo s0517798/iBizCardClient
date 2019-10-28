@@ -26,10 +26,12 @@ const LoginForm = (props) => {
         username, 
         password,
       })
-      const jwt = aUser.signInUserSession.idToken.jwtToken
-      localStorage.setItem('token', jwt)
+      console.log(aUser);
+      const token = aUser.signInUserSession.idToken.jwtToken
+      localStorage.setItem('token', token)
+      // localStorage.setItem('token', token)
       console.log('User logged in...');
-      window.location = '/'
+      window.location = '/home'
     }catch(ex) {
       console.log('error signed in', ex);
     }

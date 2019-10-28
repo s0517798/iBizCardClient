@@ -71,7 +71,14 @@ const EditCardForm = (props) => {
    // Updating a card
    const updateCard = async (card) => {
     const cardId = props.match.params.id
-    const a = await axios.put(`${endPoint}/${cardId}`, card)
+    let token = localStorage.getItem('token')
+    const a = await axios.put(`${endPoint}/${cardId}`, card, {
+      headers: {
+        'token': token,
+        'Accept' : 'application/json',
+        'Content-Type': 'application/json'
+      }
+    })
     
     try {
       

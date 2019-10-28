@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 
 import './cardUI.css';
 
-const CardUI = (props) => {
+const CardUI = ({user, card, deleteCard}) => {
 
   const renderIcon = (type, size) => {
     return (
@@ -18,7 +18,7 @@ const CardUI = (props) => {
 
   return ( 
     <div>
-    {props.card ? props.card.map(c =>
+    {card ? card.map(c =>
       <section key={c._id} id="card">
       <div className="cardContainer container ">
         <div className="companyContainer">
@@ -28,7 +28,7 @@ const CardUI = (props) => {
         <div className="nameContainer">
           <div className="name">
             <h3>
-              <a target="blank" href={"http://www.google.com/search?q=" + c.name } >{c.name}l</a>
+              <a target="blank" href={"http://www.google.com/search?q=" + c.name } >{c.name}</a>
             </h3>
             <p>{c.profession}</p>
           </div>
@@ -68,16 +68,16 @@ const CardUI = (props) => {
               <FontAwesomeIcon style={{cursor: 'pointer', color: '#d2a17c'}} size="xs" icon={faShareAltSquare} />          
             </Link>
           </div>
-          <div className="edit-icon">
+          {user &&(<div className="edit-icon">
             <Link to={`/profile/${c._id}`} style={{ color: 'inherit'}}>
               <FontAwesomeIcon style={{cursor: 'pointer'}} className="mr-2" size="xs" icon={faEdit} />
             </Link>
-          </div>
-          <div className="delete-icon">
+          </div>)}
+          {user &&(<div className="delete-icon">
             <Link to='#' style={{ color: 'inherit'}}>
-              <FontAwesomeIcon style={{cursor: 'pointer'}} size="xs" icon={faTrashAlt} onClick={() => props.deleteCard(c)} />          
+              <FontAwesomeIcon style={{cursor: 'pointer'}} size="xs" icon={faTrashAlt} onClick={() => deleteCard(c)} />          
             </Link>
-          </div>
+          </div>)}
           </div>
         </div>
       </div>

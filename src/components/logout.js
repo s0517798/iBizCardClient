@@ -6,7 +6,7 @@ const Logout = () => {
   useEffect(() => {
     Auth.signOut()
     localStorage.removeItem('token')
-    localStorage.removeItem('accesstoken')
+    // localStorage.removeItem('token')
     console.log('User logged out...');
     window.location = '/';
   }, []);

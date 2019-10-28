@@ -10,7 +10,7 @@ import axios from 'axios';
 
 const endPoint = apiUrl + '/cards';
 
-const Profile = (props) => {
+const Profile = ({user}) => {
   const [card, setCard] = useState([]);
 
   useEffect(() => {
@@ -47,7 +47,7 @@ const Profile = (props) => {
       setCard(aCard)
       await axios.delete(`${endPoint}/${acard._id}`, {
         headers: {
-          'accessToken': token,
+          'token': token,
           'Accept' : 'application/json',
           'Content-Type': 'application/json'
         }
@@ -63,10 +63,9 @@ const Profile = (props) => {
 
   return ( 
     <div>
-    <h1 className='text-center'>PROFILE</h1>
       <Row>
         <Col xs="12" sm="12" md="12">
-          <CardUI card={card} deleteCard={deleteCard}/>
+          <CardUI user={user} card={card} deleteCard={deleteCard}/>
         </Col>
       </Row>
       <div>

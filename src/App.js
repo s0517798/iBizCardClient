@@ -12,12 +12,11 @@ import AddCardForm from './components/forms/addCardForm';
 import NotFound from './components/notFound';
 import Home from './components/Home/home';
 // import Cards from './components/cards';
-import authenticator from './components/authenticator';
+import Authenticator from './components/authenticator';
 import Profile from './components/profile';
 import Logout from './components/logout';
 
 Amplify.configure(aws_exports);
-
 
 const App = () => {
 
@@ -27,27 +26,36 @@ const App = () => {
       // get the token
     const jwt = localStorage.getItem('token')
     // get us the current user object
-    // console.log('token:',jwt);
     const currentUser = jwtDecode(jwt)
     setUser(currentUser)
-    // console.log('decode:',currentUser);
     } catch(ex) {}
   }, []);
+
 
   return ( 
     <React.Fragment>
       <NavBar user={user}/>
       <main className='container'>
         <Switch>
-          <Route path='/authenticator' component={authenticator} />
+          <Route path='/home' render={props => <Home {...props} user={user} />} />
           <Route path='/register' component={RegisterForm} />
           <Route path='/login' component={LoginForm} />
           <Route path='/logout' component={Logout} />
-          <Route path='/profile/new' component={AddCardForm} />
-          <Route path='/profile/:id' component={EditCardForm} />
-          <Route path='/profile' component={Profile} />
+          <Route path='/profile/new' render={props => {
+                if(!user) {
+                  return <Redirect to='/' />
+                }
+                return <AddCardForm {...props} /> 
+              }} />
+          <Route path='/profile/:id' render={props => {
+                if(!user) {
+                  return <Redirect to='/' />
+                }
+                return <EditCardForm {...props} /> 
+              }} />
+          <Route path='/profile' render={props => <Profile {...props} user={user} />} />
           <Route path='/not-found' component={NotFound} />
-          <Route path='/' exact component={Home} />
+          <Route path='/' exact render={props => <Authenticator {...props} user={user} />} />
           {/* <Redirect from='/' exact to='/card' /> */}
           <Redirect to='/not-found' />
         </Switch>

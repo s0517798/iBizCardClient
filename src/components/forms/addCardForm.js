@@ -36,7 +36,7 @@ const AddCardForm = props => {
     try{
       await axios.post(endPoint, card, {
         headers: {
-          'accessToken': token,
+          'token': token,
           'Accept' : 'application/json',
           'Content-Type': 'application/json'
         }

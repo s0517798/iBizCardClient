@@ -1,0 +1,17 @@
+#landing-page{
+  display: flex;
+  /* flex-direction: row; */
+  /* width: 100%;
+  height: 100%; */
+  /* justify-content: space-evenly; */
+}
+
+.landing-left{
+  background-color: darksalmon;
+  /* flex-shrink: 5; */
+}
+
+.landing-right{
+  background-color: burlywood;
+  /* flex-shrink: 3; */
+}
