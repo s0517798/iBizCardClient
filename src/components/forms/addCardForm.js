@@ -53,7 +53,6 @@ const AddCardForm = props => {
       if(!card.name || !card.email) return;
       addCard(card)
       setCard(initialFormState)
-      // props.history.push('/cards')
   }
 
   const renderInput = (label, name, value) => {

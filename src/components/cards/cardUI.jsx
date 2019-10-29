@@ -18,7 +18,7 @@ const CardUI = ({user, card, deleteCard}) => {
 
   return ( 
     <div>
-    {card ? card.map(c =>
+    {card && (card.map(c =>
       <section key={c._id} id="card">
       <div className="cardContainer container ">
         <div className="companyContainer">
@@ -82,9 +82,9 @@ const CardUI = ({user, card, deleteCard}) => {
         </div>
       </div>
     </section>
-    )
+    ))
     
-    : <div><h1>The Are No Card</h1></div>}
+    }
     
     </div>
    );
