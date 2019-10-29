@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import jwtDecode from 'jwt-decode';
-import Amplify from 'aws-amplify';
-import aws_exports from './aws-exports'
 
 import NavBar from './components/navBar';
 import RegisterForm from './components/forms/registerForm';
@@ -16,7 +14,7 @@ import Authenticator from './components/authenticator';
 import Profile from './components/profile';
 import Logout from './components/logout';
 
-Amplify.configure(aws_exports);
+
 
 const App = () => {
 
