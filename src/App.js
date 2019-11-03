@@ -53,7 +53,12 @@ const App = () => {
               }} />
           <Route path='/profile' render={props => <Profile {...props} user={user} />} />
           <Route path='/not-found' component={NotFound} />
-          <Route path='/' exact render={props => <Authenticator {...props} user={user} />} />
+          <Route path='/' exact render={props => {
+            if(user) {
+              return <Redirect to='/home' />
+            }
+            return <Authenticator {...props} user={user} />}
+          }  />
           {/* <Redirect from='/' exact to='/card' /> */}
           <Redirect to='/not-found' />
         </Switch>
