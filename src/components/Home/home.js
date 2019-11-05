@@ -27,9 +27,10 @@ const Home = () => {
 
   return ( 
     <section id='home'>
-      <div className='ibc'>
-         <h2 className='text-center'>iBusiness Card</h2>
+      <div className='container'>
+        <h1>Home</h1>
       </div>
+      
     </section>
    );
 }

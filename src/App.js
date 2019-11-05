@@ -3,16 +3,15 @@ import { Switch, Route, Redirect } from 'react-router-dom';
 import jwtDecode from 'jwt-decode';
 
 import NavBar from './components/navBar';
-import RegisterForm from './components/forms/registerForm';
-import LoginForm from './components/forms/loginForm';
+import RegisterForm from './components/forms/register/registerForm';
+import LoginForm from './components/forms/Login/loginForm';
 import EditCardForm from './components/forms/editCardForm';
 import AddCardForm from './components/forms/addCardForm';
 import NotFound from './components/notFound';
 import Home from './components/Home/home';
-// import Cards from './components/cards';
-import Authenticator from './components/authenticator';
 import Profile from './components/profile';
 import Logout from './components/logout';
+import LandingPage from './components/LandingPage/landingPage';
 
 
 
@@ -22,13 +21,12 @@ const App = () => {
   useEffect(() => {
     try{
       // get the token
-    const jwt = localStorage.getItem('token')
+    const jwt = localStorage.getItem('accesstoken')
     // get us the current user object
     const currentUser = jwtDecode(jwt)
     setUser(currentUser)
     } catch(ex) {}
   }, []);
-
 
   return ( 
     <React.Fragment>
@@ -51,15 +49,14 @@ const App = () => {
                 }
                 return <EditCardForm {...props} /> 
               }} />
-          <Route path='/profile' render={props => <Profile {...props} user={user} />} />
+          <Route path='/:id' render={props => <Profile {...props} user={user} />} />
           <Route path='/not-found' component={NotFound} />
           <Route path='/' exact render={props => {
             if(user) {
               return <Redirect to='/home' />
             }
-            return <Authenticator {...props} user={user} />}
+            return <LandingPage {...props} user={user} />}
           }  />
-          {/* <Redirect from='/' exact to='/card' /> */}
           <Redirect to='/not-found' />
         </Switch>
       </main>

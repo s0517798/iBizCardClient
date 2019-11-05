@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Auth } from 'aws-amplify';
 
+import './registerForm.css'
 
 const RegisterForm = () => {
   
@@ -63,40 +64,35 @@ const RegisterForm = () => {
   }
 
 
-  const renderInput = (label, name, value, ...rest) => {
+  const renderInput = (placeholder, name, value, ...rest) => {
     return (
       <div className="form-group">
-        <label htmlFor={name}>{label}</label>
-        <input name={name} value={value} onChange={handleInputChange} className="form-control"/>
+        <input {...rest} placeholder={placeholder} name={name} value={value} onChange={handleInputChange} className="form-control"/>
       </div>
     )
   } 
  
   return ( 
-    <div>
-
-          <div>
-            <div>
-              <h2>Register Form</h2>
-            </div>
-            <form onSubmit={handleSubmit}>        
-              {renderInput('Username', 'username', user.company)} 
-              {renderInput('Password', 'password', user.password )}
-              {renderInput('Email', 'email', user.email)} 
-              <Link to='/'>
-                <button type='button' className="btn btn-secondary mt-2 mb-2 mr-2">Cancel</button>
-              </Link>
-              <button type="submit" className="btn btn-success mt-2 mb-2">Register</button>
-            </form>
-          </div>
-        
-     
-          <div>
-            {renderInput('Auth Code', 'authCode', user.authCode)}
-            <button className="btn btn-success mt-2 mb-2" onClick={confirmRegister}>Confirm Sign Up</button>
-          </div>
-      
+    <section id='register-form'>
+      <div className='container'>
+        <div>
+          <h2 className='text-center m-4'>Register Form</h2>
+        </div>
+        <form onSubmit={handleSubmit}>        
+          {renderInput('Username', 'username', user.company)} 
+          {renderInput('Password', 'password', user.password )}
+          {renderInput('Email', 'email', user.email)} 
+          <button type="submit" className="btn btn-primary btn-sm btn-block mb-3">Register</button>
+        </form>
+        <div>
+          <p className='text-center'>Do you have an account? <Link to='/'>Log in</Link></p>
+        </div>
+        <div>
+          {renderInput('Auth Code', 'authCode', user.authCode)}
+          <button className="btn btn-primary btn-sm btn-block mb-3" onClick={confirmRegister}>Confirm Sign Up</button>
+        </div>
       </div>
+    </section>
    );
 }
  

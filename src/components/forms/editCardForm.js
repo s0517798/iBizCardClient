@@ -71,10 +71,10 @@ const EditCardForm = (props) => {
    // Updating a card
    const updateCard = async (card) => {
     const cardId = props.match.params.id
-    let token = localStorage.getItem('token')
+    let accessToken = localStorage.getItem('accesstoken')
     const a = await axios.put(`${endPoint}/${cardId}`, card, {
       headers: {
-        'token': token,
+        'accesstoken': accessToken,
         'Accept' : 'application/json',
         'Content-Type': 'application/json'
       }
@@ -94,7 +94,7 @@ const EditCardForm = (props) => {
         website: a.data.website,
       }
       setACard(c)
-      props.history.push('/profile')
+      props.history.push('/')
     } catch(ex) {
       console.log(ex);
     }

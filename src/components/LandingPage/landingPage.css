@@ -1,17 +1,31 @@
 #landing-page{
   display: flex;
   /* flex-direction: row; */
-  /* width: 100%;
-  height: 100%; */
+  width: 100%;
+  /* height: 100%; */
   /* justify-content: space-evenly; */
+  padding-bottom: 30px;
 }
 
 .landing-left{
-  background-color: darksalmon;
+  /* background-color: paleturquoise; */
   /* flex-shrink: 5; */
 }
 
 .landing-right{
-  background-color: burlywood;
+  /* background-color: bisque; */
   /* flex-shrink: 3; */
+}
+
+
+landing-right{
+  background-color: lightblue;
+  margin: 10px;
+  border: 1px solid red;
+  width: 470px;
+  height: 650px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }

@@ -41,13 +41,13 @@ const Profile = ({user}) => {
   const deleteCard = async (acard) => {
     
     const initialCard = card;
-    let token = localStorage.getItem('token')
+    let accessToken = localStorage.getItem('accesstoken')
     try {
       const aCard = await card.filter(c => c._id !== acard._id)
       setCard(aCard)
       await axios.delete(`${endPoint}/${acard._id}`, {
         headers: {
-          'token': token,
+          'accesstoken': accessToken,
           'Accept' : 'application/json',
           'Content-Type': 'application/json'
         }

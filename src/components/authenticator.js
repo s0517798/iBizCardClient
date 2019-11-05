@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { withRouter } from 'react-router-dom';
-import RegisterForm from './forms/registerForm';
-import LoginForm from './forms/loginForm';
+import RegisterForm from './forms/register/registerForm';
+import LoginForm from './forms/Login/loginForm';
 
 const Authenticator = () => {
 

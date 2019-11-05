@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavLink, Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 const NavBar = ({ user }) => {
 
@@ -23,7 +23,7 @@ const NavBar = ({ user }) => {
           {user && (
             <React.Fragment>
               <NavLink to='/home' className="nav-item nav-link">Home</NavLink>
-              <NavLink to='/profile' className="nav-item nav-link">{user.email}</NavLink>
+              <NavLink to={user.username} className="nav-item nav-link">{user.username}</NavLink>
               <NavLink to='/logout' className="nav-item nav-link">Logout</NavLink>
             </React.Fragment>
           )

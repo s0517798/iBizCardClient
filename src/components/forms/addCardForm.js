@@ -32,11 +32,11 @@ const AddCardForm = props => {
   }
 
   const addCard = async (card) => {
-    let token = localStorage.getItem('token')
+    let accessToken = localStorage.getItem('accesstoken')
     try{
       await axios.post(endPoint, card, {
         headers: {
-          'token': token,
+          'accesstoken': accessToken,
           'Accept' : 'application/json',
           'Content-Type': 'application/json'
         }
