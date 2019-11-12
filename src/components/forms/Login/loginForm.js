@@ -41,7 +41,7 @@ const LoginForm = (props) => {
   const renderInput = (placeholder, name, value, ...rest) => {
     return (
       <div className="form-group">
-        <input {...rest} placeholder={placeholder} name={name} value={value} onChange={handleInputChange} className="form-control"/>
+        <input {...rest} placeholder={placeholder} type={name} name={name} value={value} onChange={handleInputChange} className="form-control"/>
       </div>
       
     )
@@ -49,21 +49,23 @@ const LoginForm = (props) => {
   
   return ( 
     <section id='login-form'>
-      <div className='container'>
-        <div>
-          <h2 className='text-center m-4'>iBizCard</h2>
-        </div>
-        
-          <form onSubmit={handleSubmit}>
-            {renderInput('Email or username', 'username', user.username)} 
-            {renderInput('Password', 'password', user.password)} 
-            {/* <Link to='/'>
-              <button type='button' className="btn btn-secondary mt-2 mb-2 mr-2">Cancel</button>
-            </Link> */}
-            <button type='submit' className="btn btn-primary btn-sm btn-block mb-3">Login</button>
-          </form>
-        <div>
-          <p className='text-center'>Do you not have an account? <Link to='/register'>Register</Link></p>
+      <div className='form'>
+        <div className='container'>
+          <div>
+            <h1 className='text-center m-4'>iBizCard</h1>
+          </div>
+          
+            <form onSubmit={handleSubmit}>
+              {renderInput('Email or username', 'username', user.username)} 
+              {renderInput('Password', 'password', user.password)} 
+              {/* <Link to='/'>
+                <button type='button' className="btn btn-secondary mt-2 mb-2 mr-2">Cancel</button>
+              </Link> */}
+              <button type='submit' className="btn-submit btn-sm btn-block mb-3">Login</button>
+            </form>
+          <div>
+            <p className='account'>Do you not have an account? <Link className='link' to='/accounts/register'>Register</Link></p>
+          </div>
         </div>
       </div>
     </section>

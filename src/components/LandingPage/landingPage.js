@@ -6,17 +6,23 @@ import './landingPage.css';
 const LandingPage = () => {
   return ( 
     <main id='landing-page'>
-      <div className='container'>
+      
         <div className='row'>
           <div className='col-md landing-left'>
-            {/* <h3>left</h3> */}
+            
+            <div>
+              Connect with other iBizCard owners in your area.
+            </div>
+            <div>Share your card electronically.</div>
+            <div>Direct contact through the card, one touch away.</div>
+            
           </div>
-          <div className='col landing-right'>
+          
+          <div className='col-md landing-right'>
             <LoginForm />
           </div>
 
         </div>
-      </div>
     </main>
    );
 }
