@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import CardUI from './cards/cardUI';
+import CardUI from '../cards/cardUI';
 import { Link } from 'react-router-dom';
 import { Row, Col } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlusCircle } from '@fortawesome/free-solid-svg-icons'
 
-import { apiUrl } from './services/config.json';
 import axios from 'axios';
 
-const endPoint = apiUrl + '/cards';
+import './profile.css';
+
+const endPoint = process.env.REACT_APP_IBC_API_KEY + '/cards';
 
 const Profile = ({user}) => {
   const [card, setCard] = useState([]);
@@ -62,12 +63,14 @@ const Profile = ({user}) => {
 
 
   return ( 
-    <div>
-      <Row>
-        <Col xs="12" sm="12" md="12">
-          <CardUI user={user} card={card} deleteCard={deleteCard}/>
-        </Col>
-      </Row>
+    <main id='profile'>
+      <div>
+        <Row>
+          <Col xs="12" sm="12" md="12">
+            <CardUI user={user} card={card} deleteCard={deleteCard}/>
+          </Col>
+        </Row>
+      </div>
       <div>
         { card.length > 0 ? null : 
           <div>
@@ -82,7 +85,7 @@ const Profile = ({user}) => {
           </div>
         }
       </div>
-    </div>
+    </main>
    );
 }
  

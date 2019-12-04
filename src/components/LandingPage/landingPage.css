@@ -1,6 +1,7 @@
 
 #landing-page{
-  display: flex;
+  /* display: flex; */
+  /* background-color: rgb(236, 236, 236); */
 }
 
 .row{
@@ -14,12 +15,21 @@
 
 .landing-left{
   display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
-  /* align-items: center; */
+  /* flex-direction: column; */
+  justify-content: center;
+  align-items: center;
   /* flex-grow: 1; */
   /* background-color: paleturquoise; */
   /* flex-shrink: 5; */
+}
+
+.connect{
+  /* background-color: bisque; */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-left: 10px;
+  /* justify-content: space-evenly; */
 }
 
 .landing-right{

@@ -5,9 +5,7 @@
     align-items: center;
 }
 
-#register-form .container{
-    /* background-color: burlywood; */
-}
+
 
 .form{
     background-color: white;
@@ -18,7 +16,7 @@
     border: 1px solid lightgrey ;
 }
 
-h1{
+.form h1{
     color: rgb(137, 152, 172);
     font-weight: 900;
 }

@@ -48,6 +48,7 @@ const RegisterForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault()
     await register()
+    alert('A verification code has been sent to your email.')
   }
 
 
@@ -56,7 +57,8 @@ const RegisterForm = () => {
     try{
       await Auth.confirmSignUp(user.username, user.authCode)
       console.log('successful sign up');
-      window.location = '/';      
+      window.location = '/';
+      alert('Confirmed!')     
     }catch(ex) {
       console.log(ex);
     }
@@ -66,7 +68,7 @@ const RegisterForm = () => {
   const renderInput = (placeholder, name, value, ...rest) => {
     return (
       <div className="form-group">
-        <input {...rest} placeholder={placeholder} type={name} name={name} value={value} onChange={handleInputChange} className="form-control"/>
+        <input autoFocus {...rest} placeholder={placeholder} type={name} name={name} value={value} onChange={handleInputChange} className="form-control"/>
       </div>
     )
   } 
@@ -79,7 +81,7 @@ const RegisterForm = () => {
             <h1 className='text-center m-4'>iBizCard</h1>
           </div>
           <form onSubmit={handleSubmit}>
-            <h5>Register to see other iBizCard owners around you.</h5> 
+            <h5>Register to connect with iBizCard holders around you.</h5> 
             {renderInput('Username', 'username', user.company)} 
             {renderInput('Password', 'password', user.password )}
             {renderInput('Email', 'email', user.email)} 
@@ -89,8 +91,8 @@ const RegisterForm = () => {
             <p className='account'>Do you have an account? <Link className='link' to='/accounts/login'>Log in</Link></p>
           </div>
           <div>
-            {renderInput('Auth Code', 'authCode', user.authCode)}
-            <button className="btn-submit btn-sm btn-block mb-3" onClick={confirmRegister}>Confirm Sign Up</button>
+            {renderInput('Verification Code', 'authCode', user.authCode)}
+            <button className="btn-submit btn-sm btn-block mb-3" onClick={confirmRegister}>Confirm Register</button>
           </div>
         </div>
       </div>

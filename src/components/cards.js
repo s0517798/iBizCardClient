@@ -4,12 +4,11 @@ import { Row, Col } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlusCircle } from '@fortawesome/free-solid-svg-icons'
 
-import { apiUrl } from '.././components/services/config.json';
 import axios from 'axios';
 import '../App.css';
 import CardUI from './cards/cardUI';
 
-const endPoint = apiUrl + '/cards';
+const endPoint = process.env.REACT_APP_IBC_API_KEY + '/cards';
 
 const Cards = () => {
   const [cards, setCards] = useState([]);
