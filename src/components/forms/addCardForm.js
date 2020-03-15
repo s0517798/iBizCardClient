@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-import { apiUrl } from '../services/config.json';
 
-const endPoint = apiUrl + '/cards';
+const endPoint = process.env.REACT_APP_IBC_API_KEY + '/cards';
 
 
 const AddCardForm = props => {
@@ -42,7 +41,7 @@ const AddCardForm = props => {
         }
       })
       setCard(card)
-      props.history.push('/profile')
+      props.history.push('/')
     } catch(ex) {
       console.log(ex);
     }
@@ -53,6 +52,7 @@ const AddCardForm = props => {
       if(!card.name || !card.email) return;
       addCard(card)
       setCard(initialFormState)
+      console.log(props);
   }
 
   const renderInput = (label, name, value) => {
@@ -88,10 +88,10 @@ const AddCardForm = props => {
         {renderInput('Address', 'address', card.address)} 
         {renderInput('Website', 'website', card.website)} 
         
-        <Link to='/profile'>
+        <Link to='/'>
           <button type='button' className="btn btn-secondary mt-2 mb-2 mr-2">Cancel</button>
         </Link>
-        <button className="btn btn-primary mt-2 mb-2">Add Card</button>
+        <button type='submit' className="btn btn-primary mt-2 mb-2">Add Card</button>
       </form>
       
       </div>

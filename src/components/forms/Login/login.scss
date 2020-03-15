@@ -1,0 +1,85 @@
+#login{
+  display: flex;
+  justify-content: space-between;
+}
+
+#login h1 {
+  color: #ff3b3f;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+#login .failedLogin {
+  background-color: rgba(213, 53, 46,0.1);
+  border-radius: 5px;
+  padding: 10px;
+  text-align: center;
+  font-size: 14px;
+  color: #a9a9a9;
+  line-height: 16px;
+  text-align: center;
+  margin: 0px 0px 15px 0px;
+}
+
+#login .login-left {
+  background-color: #efefef;
+  width: 400px;
+  padding: 20px;
+}
+
+#login .login-right {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1;
+  padding: 20px;
+  background-color: #fafafa;
+}
+
+#login .login-right-form{
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  max-width: 350px;
+  height: 400px;
+  padding: 10px;
+  background-color: #fff;
+  background-color: rgba(var(--cdc,255,255,255),1);
+  border: 1px solid #dbdbdb;
+  border: 1px solid rgba(var(--b6a,219,219,219),1);
+  box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.2), 0 0px 2px 0 rgba(0, 0, 0, 0.19);
+  border-radius: 1px;
+  margin: 0 0 10px;
+  padding: 10px;
+}
+
+#login .login-button {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 20px;
+}
+
+#login .btn-submit{
+  text-transform: uppercase;
+  border: none;
+  width: 90px !important;
+  height: 40px !important;
+  border-radius: 5px;
+  color: white;
+  font-weight: 600;
+  background-color:  #efefef;
+}
+
+#login  .btn-submit:not(:disabled) {
+  background-color: #caebf2;
+}
+
+#login .register-link{
+  margin-left: 2px;
+  text-decoration: none;
+  color: inherit;
+  text-transform: uppercase;
+}
+
+#login .register-link:hover{
+  color: #caebf2;
+}

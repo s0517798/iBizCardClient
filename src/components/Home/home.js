@@ -20,11 +20,6 @@ const Home = () => {
     getUserInfo()
   }, []);
 
-// let word = "ibusiness card"
-// let split = word.split(' ')
-// let join = split.join('')
-// console.log(join);
-
   return ( 
     <section id='home'>
       <div className='container'>

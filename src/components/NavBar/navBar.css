@@ -1,0 +1,13 @@
+nav .collapse .navbar-nav .profile-nav{
+  display: flex;
+}
+
+.profile-left{
+
+}
+
+.profile-right{
+  background-color: rgb(255, 157, 0, .2);
+  display: flex;
+  margin-left: auto;
+}

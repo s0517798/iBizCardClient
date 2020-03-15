@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from 'react';
 // import { Link } from 'react-router-dom';
 import axios from 'axios';
-import { apiUrl } from '../services/config.json';
 
-const endPoint = apiUrl + '/cards';
+const endPoint = process.env.REACT_APP_IBC_API_KEY + '/cards';
 
-const EditCardForm = (props) => {
+const EditCardForm = ({ user, match, history }) => {
 
-  console.log('props.user',props.user);
+
 
   const initialFormState = {
     _id: '',
@@ -21,7 +20,6 @@ const EditCardForm = (props) => {
     website: '',
   }
 
-  console.log('pros: => ', props);
 
 
   const [ACard, setACard] = useState(initialFormState);
@@ -36,7 +34,7 @@ const EditCardForm = (props) => {
     let mounted = true
 
     const displayFormValues = async (card) => {
-      const cardId = props.match.params.id
+      const cardId = match.params.id
       const aCard = await axios.get(`${endPoint}/${cardId}`, card )
       console.log(aCard);
       try {
@@ -65,12 +63,12 @@ const EditCardForm = (props) => {
       console.log('Unmounted editCardForm');
       mounted = false
     }
-  }, [props.match.params.id])
+  }, [match.params.id])
 
 
    // Updating a card
    const updateCard = async (card) => {
-    const cardId = props.match.params.id
+    const cardId = match.params.id
     let accessToken = localStorage.getItem('accesstoken')
     const a = await axios.put(`${endPoint}/${cardId}`, card, {
       headers: {
@@ -94,7 +92,7 @@ const EditCardForm = (props) => {
         website: a.data.website,
       }
       setACard(c)
-      props.history.push('/')
+      window.location = '/home'
     } catch(ex) {
       console.log(ex);
     }
@@ -104,7 +102,7 @@ const EditCardForm = (props) => {
   const handleSubmit = e => {
       e.preventDefault()
       const newCard = {
-        _id: props.match.params.id,
+        _id: match.params.id,
         company: e.target.company.value,
         slogan: e.target.slogan.value,
         name: e.target.name.value,
@@ -128,13 +126,13 @@ const EditCardForm = (props) => {
   } 
   
   const goBack = () => {
-    props.history.goBack()
+    history.goBack()
   }
   
   return ( 
     <div>
       <div>
-        <h2>Edit Card - {props.match.params.id}</h2>
+        <h2>Edit Card - {match.params.id}</h2>
       </div>
       <form
         onSubmit={handleSubmit}

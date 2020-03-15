@@ -3,7 +3,9 @@ import { NavLink } from 'react-router-dom';
 
 import './navBar.css'
 
-const NavBar = ({ user }) => {
+const NavBar = ({ user, history, location, match }) => {
+  // const { username } = match.params
+  // console.log(username);
 
   return ( 
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
