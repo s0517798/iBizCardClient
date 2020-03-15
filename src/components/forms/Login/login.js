@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { Auth } from 'aws-amplify';
 import Joi from 'joi'
 
-import './loginForm.css'
+import './login.scss'
 
 
 const LoginForm = (props) => {
@@ -78,9 +78,8 @@ const LoginForm = (props) => {
   } 
   
   return ( 
-    <section id='login-form'>
+    <div id='login'>
       <div className='form'>
-        <div className='container'>
           <div>
             <h1 className='text-center m-4'>iBizCard</h1>
           </div>
@@ -102,8 +101,7 @@ const LoginForm = (props) => {
             <p className='account'>Do you not have an account? <Link className='link' to='/accounts/register'>Register</Link></p>
           </div>
         </div>
-      </div>
-    </section>
+    </div>
    );
 }
  

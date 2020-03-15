@@ -1,7 +1,7 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUserFriends, faPlug, faShare  } from '@fortawesome/free-solid-svg-icons'
-import LoginForm from '../forms/Login/loginForm';
+import Login from '../forms/Login/login';
 
 import './landingPage.css';
 
@@ -33,7 +33,7 @@ const LandingPage = () => {
           </div>
           
           <div className='col-md-12 col-lg-6 landing-right'>
-            <LoginForm />
+            <Login />
           </div>
         </div>
       </div>

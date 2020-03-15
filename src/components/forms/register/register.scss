@@ -1,0 +1,105 @@
+
+#register{
+  display: flex;
+  justify-content: space-between;
+}
+
+#register h1 {
+  color: #ff3b3f;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+#register .register-left {
+  background-color: #efefef;
+  width: 400px;
+  padding: 20px;
+}
+
+#register .register-right {
+  display: flex;
+  justify-content: center;
+  flex-grow: 1;
+  padding: 20px;
+  background-color: #fafafa;
+}
+
+#register .faPlug {
+  color: #caebf2;
+  margin-right: 5px;
+}
+
+#register .faShare {
+  color: #caebf2;
+  margin-right: 5px;
+}
+
+#register .faUserFriends {
+  color: #caebf2;
+  margin-right: 5px;
+}
+
+#register .register-right-form {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  max-width: 350px;
+  padding: 10px;
+  height: 100%;
+  background-color: #fff;
+  background-color: rgba(var(--cdc,255,255,255),1);
+  border: 1px solid #dbdbdb;
+  border: 1px solid rgba(var(--b6a,219,219,219),1);
+  box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.2), 0 0px 2px 0 rgba(0, 0, 0, 0.19);
+  border-radius: 1px;
+  margin: 0 0 10px;
+  padding: 10px;
+}
+
+.form{
+  background-color: white;
+  width: 350px;
+  height: 520px;
+  margin: 20px;
+  border-radius: 3px;
+  border: 1px solid lightgrey ;
+}
+
+.form h1{
+  color: rgb(137, 152, 172);
+  font-weight: 900;
+}
+
+.register-button {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.btn-submit{
+  border: none;
+  width: 90px !important;
+  height: 40px !important;
+  border-radius: 5px;
+  color: white;
+  font-weight: 600;
+  background-color:  #efefef;
+}
+
+.btn-submit:not(:disabled) {
+  background-color: #caebf2;
+}
+
+.login-link{
+  margin-left: 2px;
+  text-decoration: none;
+  color: inherit;
+  text-transform: uppercase;
+}
+
+.login-link:hover{
+  color: #caebf2;
+}
+
+.account{
+  margin-top: 20px;
+    text-align: center;
+}

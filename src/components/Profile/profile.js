@@ -78,7 +78,7 @@ const Profile = ({user}) => {
               <h4>THERE ARE NO CARDS</h4>
             </div>
             <div>
-              <Link to='/profile/new'>
+              <Link to='/profile/:id'>
                 <FontAwesomeIcon style={styles.addButton}  icon={faPlusCircle} />
               </Link>
             </div>

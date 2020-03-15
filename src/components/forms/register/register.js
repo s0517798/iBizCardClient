@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Auth } from 'aws-amplify';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faUserFriends, faPlug, faShare  } from '@fortawesome/free-solid-svg-icons';
 
-import './registerForm.css'
+import './register.scss'
 
-const RegisterForm = () => {
+const Register = () => {
   
   const initialFormState = {
     username: '',
@@ -72,32 +74,51 @@ const RegisterForm = () => {
       </div>
     )
   } 
+
+  
  
   return ( 
-    <section id='register-form'>
-      <div className='form'>
-        <div className='container'>
+    <div id='register'>
+      <div className='register-left'>
+        
+      </div>
+      <div className='register-right'>
+        <div className='register-right-form'>
           <div>
             <h1 className='text-center m-4'>iBizCard</h1>
           </div>
           <form onSubmit={handleSubmit}>
-            <h5>Register to connect with iBizCard holders around you.</h5> 
+            <div className='connect'>
+              <div>
+                <p>
+                <FontAwesomeIcon className="faPlug" size="lg" icon={faPlug} />
+                  Connect with other iBizCard owners in your area.</p>
+              </div>
+              <div>
+                <p>
+                <FontAwesomeIcon className="faShare" size="lg" icon={faShare} />
+                  Share your card electronically.</p>
+              </div>
+              <div>
+                <p>
+                <FontAwesomeIcon className="faUserFriends" size="lg" icon={faUserFriends} />
+                  Direct contact through the card, one touch away.</p>
+              </div>
+            </div>
             {renderInput('Username', 'username', user.company)} 
             {renderInput('Password', 'password', user.password )}
             {renderInput('Email', 'email', user.email)} 
-            <button type="submit" className="btn-submit btn-sm btn-block mb-3">Register</button>
+            <div className='register-button'>
+              <button disabled={user.username === '' || user.password === '' || user.email === '' ? true : false} type="submit" className="btn-submit">Register</button>
+            </div>
           </form>
-          <div>
-            <p className='account'>Do you have an account? <Link className='link' to='/accounts/login'>Log in</Link></p>
-          </div>
-          <div>
+            <p className='account'>Do you have an account? <Link className='login-link' to='/accounts/login'>Log in</Link></p>
             {renderInput('Verification Code', 'authCode', user.authCode)}
-            <button className="btn-submit btn-sm btn-block mb-3" onClick={confirmRegister}>Confirm Register</button>
-          </div>
+            <button disabled={user.authCode === ''} className="btn-submit btn-sm btn-block mb-3" onClick={confirmRegister}>Verification</button>
         </div>
       </div>
-    </section>
+    </div>
    );
 }
  
-export default RegisterForm;
+export default Register;

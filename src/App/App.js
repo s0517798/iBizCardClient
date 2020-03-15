@@ -4,8 +4,8 @@ import jwtDecode from 'jwt-decode';
 import { Auth } from 'aws-amplify';
 
 import NavBar from '../components/NavBar/navBar';
-import RegisterForm from '../components/forms/register/registerForm';
-import LoginForm from '../components/forms/Login/loginForm';
+import Register from '../components/forms/register/register';
+import Login from '../components/forms/Login/login';
 import EditCardForm from '../components/forms/editCardForm';
 import AddCardForm from '../components/forms/addCardForm';
 import NotFound from '../components/notFound';
@@ -51,19 +51,19 @@ const App = () => {
   return ( 
     <React.Fragment>
       { user && <Route render={props => <NavBar {...props} user={user}/>} /> }
-      <main className='container'>
+      <div id='app'>
         <Switch>
           <Route path='/home' render={props => <Home {...props} user={user} />} />
           <Route path='/accounts/register' render={props => {
                 if(!user) {
-                  return <RegisterForm {...props} /> 
+                  return <Register {...props} /> 
                 }
                 return <Redirect to='/' />
               }} />
 
           <Route path='/accounts/login' render={props => {
                 if(!user) {
-                  return <LoginForm {...props} /> 
+                  return <Login {...props} /> 
                 }
                 return <Redirect to='/' />
               }} />
@@ -83,18 +83,18 @@ const App = () => {
                 return <EditCardForm {...props} user={user} /> 
               }} />
               
-          <Route path='/:username' render={props => <Profile {...props} user={user} />} />
           <Route path='/not-found' component={NotFound} />
+          <Route path='/:username' render={props => <Profile {...props} user={user} />} />
           <Route path='/' render={props => {
             if(user) {
               return <Redirect to='/home' />
             }
-            return <LandingPage {...props} user={user} />}
+            return <Login {...props} user={user} />}
           }  />
-
           <Redirect to='/not-found' />
+
         </Switch>
-      </main>
+      </div>
         {/* <Footer /> */}
     </React.Fragment>
    );
