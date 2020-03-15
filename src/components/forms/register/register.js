@@ -84,9 +84,7 @@ const Register = () => {
       </div>
       <div className='register-right'>
         <div className='register-right-form'>
-          <div>
-            <h1 className='text-center m-4'>iBizCard</h1>
-          </div>
+          <h1 className='text-center m-4'>iBizCard</h1>
           <form onSubmit={handleSubmit}>
             <div className='connect'>
               <div>
@@ -114,7 +112,7 @@ const Register = () => {
           </form>
             <p className='account'>Do you have an account? <Link className='login-link' to='/accounts/login'>Log in</Link></p>
             {renderInput('Verification Code', 'authCode', user.authCode)}
-            <button disabled={user.authCode === ''} className="btn-submit btn-sm btn-block mb-3" onClick={confirmRegister}>Verification</button>
+            <button disabled={user.authCode === ''} className="btn-submit btn-sm btn-block mb-3" onClick={confirmRegister}>Verified</button>
         </div>
       </div>
     </div>

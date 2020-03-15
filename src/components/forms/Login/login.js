@@ -15,26 +15,26 @@ const LoginForm = (props) => {
   }
   
   const [user, setUser] = useState(initialFormState);
-  const [errors, setErrors] = useState({})
+  const [errors, setErrors] = useState('')
 
   const schema = {
     username: Joi.string().required().label('Username'),
     password: Joi.string().required().label('Password')
   }
 
-  const validate = () => {
-    const { error } = Joi.validate(user, schema, { abortEarly:  false })
+  // const validate = () => {
+  //   const { error } = Joi.validate(user, schema, { abortEarly:  false })
    
-    if(!error) {
-      return null
-    }
+  //   if(!error) {
+  //     return null
+  //   }
     
-    const errors = {}
-    for(let item of error.details) {
-      errors[item.path[0]] = item.message
-    }
-    return errors
-  }
+  //   const errors = {}
+  //   for(let item of error.details) {
+  //     errors[item.path[0]] = item.message
+  //   }
+  //   return errors
+  // }
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -45,11 +45,11 @@ const LoginForm = (props) => {
   const handleSubmit = async (e) => {
     e.preventDefault()
     
-    const errors = validate()
-    setErrors( errors || {} )
-    if(errors) {
-      return
-    }
+    // const errors = validate()
+    // setErrors( errors || {} )
+    // if(errors) {
+    //   return
+    // }
 
     const { username, password } = user;
     try{
@@ -64,7 +64,18 @@ const LoginForm = (props) => {
       console.log('User logged in...');
       window.location = '/home'
     }catch(ex) {
-      console.log('error signed in', ex);
+      console.log(ex.message);
+      setErrors(ex.message)
+    }
+  }
+
+  const loginState = () => {
+    if(errors !== '') {
+      return (
+        <div className='failedLogin'>
+          {errors}
+        </div>
+      )
     }
   }
 
@@ -79,28 +90,23 @@ const LoginForm = (props) => {
   
   return ( 
     <div id='login'>
-      <div className='form'>
-          <div>
-            <h1 className='text-center m-4'>iBizCard</h1>
-          </div>
-          
-            <form onSubmit={handleSubmit}>
-              {renderInput('Email or username', 'username', user.username)}
-              {!errors &&
-              <div>
-                ouch
-              </div>
-              } 
-              {renderInput('Password', 'password', user.password)} 
-              {/* <Link to='/'>
-                <button type='button' className="btn btn-secondary mt-2 mb-2 mr-2">Cancel</button>
-              </Link> */}
-              <button type='submit' className="btn-submit btn-sm btn-block mb-3">Login</button>
-            </form>
-          <div>
-            <p className='account'>Do you not have an account? <Link className='link' to='/accounts/register'>Register</Link></p>
-          </div>
+      <div className='login-left'>
+
+      </div>
+      <div className='login-right'>
+        <div className='login-right-form'>
+          <h1 className='text-center m-4'>iBizCard</h1>
+          <div>{loginState()}</div>
+          <form onSubmit={handleSubmit}>
+            {renderInput('Email or username', 'username', user.username)}
+            {renderInput('Password', 'password', user.password)} 
+            <div className='login-button'>
+              <button disabled={ user.username === '' || user.password === '' ? true : false } type='submit' className="btn-submit">{errors ? 'Try again' : 'Login'}</button> 
+            </div>
+          </form>
+          <p className='account'>Do you not have an account? <Link className='register-link' to='/accounts/register'>Register</Link></p>
         </div>
+      </div>
     </div>
    );
 }

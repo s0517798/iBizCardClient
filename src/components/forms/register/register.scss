@@ -55,26 +55,13 @@
   padding: 10px;
 }
 
-.form{
-  background-color: white;
-  width: 350px;
-  height: 520px;
-  margin: 20px;
-  border-radius: 3px;
-  border: 1px solid lightgrey ;
-}
-
-.form h1{
-  color: rgb(137, 152, 172);
-  font-weight: 900;
-}
-
-.register-button {
+#register .register-button {
   display: flex;
   justify-content: flex-end;
 }
 
-.btn-submit{
+#register .btn-submit{
+  text-transform: uppercase;
   border: none;
   width: 90px !important;
   height: 40px !important;
@@ -84,22 +71,22 @@
   background-color:  #efefef;
 }
 
-.btn-submit:not(:disabled) {
+#register .btn-submit:not(:disabled) {
   background-color: #caebf2;
 }
 
-.login-link{
+#register .login-link{
   margin-left: 2px;
   text-decoration: none;
   color: inherit;
   text-transform: uppercase;
 }
 
-.login-link:hover{
+#register .login-link:hover{
   color: #caebf2;
 }
 
-.account{
+#register .account{
   margin-top: 20px;
     text-align: center;
 }
