@@ -8,7 +8,7 @@ import axios from 'axios';
 import '../App.css';
 import CardUI from './cards/cardUI';
 
-const endPoint = process.env.REACT_APP_IBC_API_KEY + '/cards';
+const endPoint = 'https://ldz6xvnqrl.execute-api.us-east-1.amazonaws.com/dev/api' + '/cards';
 
 const Cards = () => {
   const [cards, setCards] = useState([]);

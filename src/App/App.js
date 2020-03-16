@@ -83,8 +83,8 @@ const App = () => {
                 return <EditCardForm {...props} user={user} /> 
               }} />
               
-          <Route path='/not-found' component={NotFound} />
           <Route path='/:username' render={props => <Profile {...props} user={user} />} />
+          <Route path='/not-found' component={NotFound} />
           <Route path='/' render={props => {
             if(user) {
               return <Redirect to='/home' />
