@@ -9,7 +9,8 @@ import axios from 'axios';
 
 import './profile.css';
 
-const endPoint = process.env.REACT_APP_IBC_API_KEY + '/cards';
+// const endPoint = process.env.REACT_APP_IBC_API_KEY + '/cards';
+const endPoint = 'http://localhost:3001/api' + '/cards';
 
 const Profile = ({user}) => {
   const [card, setCard] = useState([]);
@@ -78,7 +79,7 @@ const Profile = ({user}) => {
               <h4>THERE ARE NO CARDS</h4>
             </div>
             <div>
-              <Link to='/profile/:id'>
+              <Link to='/profile/new'>
                 <FontAwesomeIcon style={styles.addButton}  icon={faPlusCircle} />
               </Link>
             </div>

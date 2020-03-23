@@ -4,7 +4,7 @@
     /* width: 100%; */
 }
 
-html, body, #root, #app, .register, #app>div {
+html, .register, body > div {
     height: 100%
   }
 

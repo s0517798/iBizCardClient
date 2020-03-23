@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 
-const endPoint = process.env.REACT_APP_IBC_API_KEY + '/cards';
+const endPoint = 'http://localhost:3001/api' + '/cards';
+// const endPoint = process.env.REACT_APP_IBC_API_KEY + '/cards';
 
 
 const AddCardForm = props => {
@@ -41,7 +42,7 @@ const AddCardForm = props => {
         }
       })
       setCard(card)
-      props.history.push('/')
+      props.history.goBack()
     } catch(ex) {
       console.log(ex);
     }

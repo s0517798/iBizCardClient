@@ -24,6 +24,18 @@
   background-color: #fafafa;
 }
 
+#register .failedRegister {
+  background-color: rgba(213, 53, 46,0.1);
+  border-radius: 5px;
+  padding: 10px;
+  text-align: center;
+  font-size: 14px;
+  color: #a9a9a9;
+  line-height: 16px;
+  text-align: center;
+  margin: 0px 0px 15px 0px;
+}
+
 #register .faPlug {
   color: #caebf2;
   margin-right: 5px;

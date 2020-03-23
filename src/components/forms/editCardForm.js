@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 // import { Link } from 'react-router-dom';
 import axios from 'axios';
 
-const endPoint = process.env.REACT_APP_IBC_API_KEY + '/cards';
+const endPoint = 'http://localhost:3001/api' + '/cards';
+// const endPoint = process.env.REACT_APP_IBC_API_KEY + '/cards';
 
 const EditCardForm = ({ user, match, history }) => {
 

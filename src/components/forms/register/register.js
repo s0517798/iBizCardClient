@@ -17,8 +17,9 @@ const Register = () => {
     showConfirmation: false
   }
   
-  
   const [user, setUser] = useState(initialFormState);
+  const [error, setError] = useState('');
+  const [verificationMsg, setVerificationMsg] = useState('');
 
   const register = async () => {
     const { username, password, email, phone_number } = user;
@@ -33,7 +34,7 @@ const Register = () => {
       })
       console.log('Signed Up...')
     }catch(ex) {
-      console.log('Error occured while signing up: ', ex);
+      setError(ex.message);
     }
   }
 
@@ -50,7 +51,6 @@ const Register = () => {
   const handleSubmit = async (e) => {
     e.preventDefault()
     await register()
-    alert('A verification code has been sent to your email.')
   }
 
 
@@ -60,11 +60,22 @@ const Register = () => {
       await Auth.confirmSignUp(user.username, user.authCode)
       console.log('successful sign up');
       window.location = '/';
-      alert('Confirmed!')     
+      setVerificationMsg('A verification code has been sent to your email.')
     }catch(ex) {
-      console.log(ex);
+      let err = ex.message.split(',')[0]
+      setError(err)
     }
     
+  }
+
+  const registerState = () => {
+    if(error !== '') {
+      return (
+        <div className='failedRegister'>
+          {error}
+        </div>
+      )
+    }
   }
 
   const renderInput = (placeholder, name, value, ...rest) => {
@@ -76,7 +87,7 @@ const Register = () => {
   } 
 
   
- 
+
   return ( 
     <div id='register'>
       <div className='register-left'>
@@ -103,6 +114,7 @@ const Register = () => {
                   Direct contact through the card, one touch away.</p>
               </div>
             </div>
+            <div>{registerState()}</div>
             {renderInput('Username', 'username', user.company)} 
             {renderInput('Password', 'password', user.password )}
             {renderInput('Email', 'email', user.email)} 
@@ -110,6 +122,7 @@ const Register = () => {
               <button disabled={user.username === '' || user.password === '' || user.email === '' ? true : false} type="submit" className="btn-submit">Register</button>
             </div>
           </form>
+            <div>{verificationMsg}</div>
             <p className='account'>Do you have an account? <Link className='login-link' to='/accounts/login'>Log in</Link></p>
             {renderInput('Verification Code', 'authCode', user.authCode)}
             <button disabled={user.authCode === ''} className="btn-submit btn-sm btn-block mb-3" onClick={confirmRegister}>Verified</button>

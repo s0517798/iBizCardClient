@@ -8,33 +8,33 @@ import axios from 'axios';
 import '../App.css';
 import CardUI from './cards/cardUI';
 
-const endPoint = 'https://ldz6xvnqrl.execute-api.us-east-1.amazonaws.com/dev/api' + '/cards';
+// const endPoint = 'http://localhost:3001/api' + '/cards';
 
-const Cards = () => {
-  const [cards, setCards] = useState([]);
+// const Cards = () => {
+//   const [cards, setCards] = useState([]);
   
   
-  useEffect(() => {
-    let mounted = true
-    // function to get data from endpoint
-    const cardsData = async () => {
-      try {
-        // Reading a card
-        const card = await axios.get(endPoint)
-        if(mounted) {
-          setCards(card.data)
-        }
-      } catch(ex) {
-        console.log(ex)
-      }
-    }
-    cardsData()
+//   useEffect(() => {
+//     let mounted = true
+//     // function to get data from endpoint
+//     const cardsData = async () => {
+//       try {
+//         // Reading a card
+//         const card = await axios.get(endPoint)
+//         if(mounted) {
+//           setCards(card.data)
+//         }
+//       } catch(ex) {
+//         console.log(ex)
+//       }
+//     }
+//     cardsData()
 
-    return () => {
-      console.log('Unmounted the cards')
-      mounted = false
-    }
-  }, [])
+//     return () => {
+//       console.log('Unmounted the cards')
+//       mounted = false
+//     }
+//   }, [])
 
 
   // Deleting a card
