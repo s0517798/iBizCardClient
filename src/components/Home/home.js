@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Auth } from 'aws-amplify';
 
 import './home.css';
+import Cards from '../cards';
 
 const Home = () => {
 
@@ -24,11 +25,12 @@ const Home = () => {
     <section id='home'>
       <div className='container'>
         <h1>Home</h1>
+        <Cards />
       </div>
       
     </section>
-   );
+  );
 }
 
- 
+
 export default Home;

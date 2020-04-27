@@ -1,88 +1,43 @@
-import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import { Row, Col } from 'reactstrap';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faPlusCircle } from '@fortawesome/free-solid-svg-icons'
+import React, { Component } from 'react';
+import { getCards, deleteCard } from '../services/cardService';
 
-import axios from 'axios';
-import '../App.css';
-import CardUI from './cards/cardUI';
 
-const endPoint = 'http://localhost:3001/api' + '/cards';
+class Cards extends Component {
+  state = { 
+    cards: []
+  }
 
-const Cards = () => {
-  const [cards, setCards] = useState([]);
-  
-  
-  useEffect(() => {
-    let mounted = true
-    // function to get data from endpoint
-    const cardsData = async () => {
-      try {
-        // Reading a card
-        const card = await axios.get(endPoint)
-        if(mounted) {
-          setCards(card.data)
-        }
-      } catch(ex) {
-        console.log(ex)
-      }
-    }
-    cardsData()
-
-    return () => {
-      console.log('Unmounted the cards')
-      mounted = false
-    }
-  }, [])
-
+  async componentDidMount() {
+    const cards = await getCards()
+    this.setState({ cards })
+  }
 
   // Deleting a card
-  const deleteCard = async card => {
-    
-    const initialCard = cards;
-    const aCard = initialCard.filter(c => c._id !== card._id)
-    setCards(aCard)
+  handleDeleteCard = async card => {
+    const initialCard = this.state.cards;
+    const cards = initialCard.filter(c => c._id !== card._id)
+    this.setState({ cards })
     
     try {
-      await axios.delete(`${endPoint}/${card._id}`)
+      await deleteCard(card._id)
     } catch(ex) {
       if(ex) {
         console.log(ex);
       }
-      setCards(initialCard)
+      this.setState({ initialCard })
     }
   }
 
-console.log(cards);
-  return (
-    <div>
-      <Row>
-        <Col xs="12" sm="12" md="12">
-          <CardUI card={cards} deleteCard={deleteCard}/>
-        </Col>
-      </Row>
-      <div>
-        { cards.length > 0 ? null : 
-          <Link to='profile/new'>
-          <FontAwesomeIcon style={styles.addButton}  icon={faPlusCircle} />
-        </Link>
-        }
+  render() { 
+    console.log(this.props.user);
+    return ( 
+      <div className='row'>
+        <div className='col'>
+
+        </div>
       </div>
-    </div>
-  );
+    );
+  }
 }
 
 export default Cards;
-
-const styles = {
-  addButton: {
-    color: 'red',
-    margin: 0,
-    top: 'auto',
-    bottom: 20,
-    left: 'auto',
-    position: 'fixed'
-  }
-
-}
