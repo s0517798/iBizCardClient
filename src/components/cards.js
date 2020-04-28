@@ -4,11 +4,11 @@ import { getCards, deleteCard } from '../services/cardService';
 
 class Cards extends Component {
   state = { 
-    cards: []
+    cards: {}
   }
 
   async componentDidMount() {
-    const cards = await getCards()
+    const { data: cards } = await getCards()
     this.setState({ cards })
   }
 
@@ -29,11 +29,10 @@ class Cards extends Component {
   }
 
   render() { 
-    console.log(this.props.user);
     return ( 
       <div className='row'>
         <div className='col'>
-
+          
         </div>
       </div>
     );
