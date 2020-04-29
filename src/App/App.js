@@ -3,7 +3,7 @@ import { Switch, Route, Redirect } from 'react-router-dom';
 import NavBar from '../components/NavBar/navBar';
 import Register from '../components/forms/register/register';
 import Login from '../components/forms/Login/login';
-import EditCardForm from '../components/forms/editCardForm';
+import CardForm from '../components/forms/cardForm';
 import NotFound from '../components/notFound';
 import Home from '../components/Home/home';
 import Profile from '../components/Profile/profile';
@@ -38,7 +38,7 @@ class App extends Component {
               if(!user) {
                 return <Redirect to='/login' />
               }
-              return <EditCardForm {...props} user={user} /> 
+              return <CardForm {...props} user={user} /> 
             }}/>
             <Route path='/profile' render={props => <Profile {...props} user={user} />} />
             <Route path='/about' component={About} />

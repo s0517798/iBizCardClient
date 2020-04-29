@@ -45,7 +45,7 @@ class Profile extends Component {
             <CardUI 
               user={user} 
               card={card} 
-              deleteCard={this.deleteCard}
+              deleteCard={this.handleDeleteCard}
             />
           </Col>
         </Row>
