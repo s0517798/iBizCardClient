@@ -104,7 +104,7 @@ const LoginForm = (props) => {
               <button disabled={ user.username === '' || user.password === '' ? true : false } type='submit' className="btn-submit">{errors ? 'Try again' : 'Login'}</button> 
             </div>
           </form>
-          <p className='account'>Do you not have an account? <Link className='register-link' to='/accounts/register'>Register</Link></p>
+          <p className='account'>Do you not have an account? <Link className='register-link' to='/register'>Register</Link></p>
         </div>
       </div>
     </div>
