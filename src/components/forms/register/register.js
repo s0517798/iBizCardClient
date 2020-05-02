@@ -123,7 +123,7 @@ const Register = () => {
             </div>
           </form>
             <div>{verificationMsg}</div>
-            <p className='account'>Do you have an account? <Link className='login-link' to='/accounts/login'>Log in</Link></p>
+            <p className='account'>Do you have an account? <Link className='login-link' to='/login'>Log in</Link></p>
             {renderInput('Verification Code', 'authCode', user.authCode)}
             <button disabled={user.authCode === ''} className="btn-submit btn-sm btn-block mb-3" onClick={confirmRegister}>Verified</button>
         </div>

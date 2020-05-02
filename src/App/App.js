@@ -20,6 +20,7 @@ class App extends Component {
 
   componentDidMount() {
     const user = auth.getcurrentUser()
+    auth.refreshToken()
     this.setState({ user })
   }
   render() {

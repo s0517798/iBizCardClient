@@ -1,8 +1,4 @@
-import React, { Fragment } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faUserFriends, faPlug, faShare  } from '@fortawesome/free-solid-svg-icons'
-import { NavLink } from 'react-router-dom';
-import Login from '../forms/Login/login';
+import React from 'react';
 
 
 import './landingPage.css';

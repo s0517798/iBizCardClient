@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 
 import './cardUI.css';
 
-const CardUI = ({user, card, deleteCard}) => {
+const CardUI = ({user, card, onDeleteCard}) => {
 
   const renderIcon = (type, size) => {
     return (
@@ -75,7 +75,7 @@ const CardUI = ({user, card, deleteCard}) => {
           </div>)}
           {user &&(<div className="delete-icon">
             <Link to='#' style={{ color: 'inherit'}}>
-              <FontAwesomeIcon style={{cursor: 'pointer'}} size="xs" icon={faTrashAlt} onClick={() => deleteCard(c)} />          
+              <FontAwesomeIcon style={{cursor: 'pointer'}} size="xs" icon={faTrashAlt} onClick={() => onDeleteCard(c)} />          
             </Link>
           </div>)}
           </div>

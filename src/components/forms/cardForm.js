@@ -21,13 +21,14 @@ class CardForm extends Component {
       if(cardId === 'new') return
 
       const { data: card } = await getCard(cardId)
-      this.setState({ data: this.mapToViewModel(card) })
+      console.log(card);
+      this.setState({ data: this.cardViewModel(card) })
     } catch (ex) {
       
     }
   }
 
-  mapToViewModel(card) {
+  cardViewModel(card) {
     return {
         _id: card[0]._id,
         company: card[0].company,
@@ -50,7 +51,8 @@ class CardForm extends Component {
   handleSubmit = async e => {
       e.preventDefault()
       await saveCard(this.state.data)
-      window.location = '/profile'
+      console.log('cliked',e);
+      this.props.history.push('/profile')
   }
 
   renderInput = (label, name, value) => {
@@ -69,7 +71,7 @@ class CardForm extends Component {
   render() { 
     const { data: card } = this.state
     return ( 
-      <div>
+      <div style={{ margin: '15px' }}>
         <div>
           <h2>Card Form - {this.props.match.params.id}</h2>
         </div>
@@ -83,7 +85,7 @@ class CardForm extends Component {
           {this.renderInput('Address', 'address', card.address, 'address')} 
           {this.renderInput('Website', 'website', card.website, 'website')} 
           <button onClick={this.goBack} type='button' className="btn btn-secondary mt-2 mb-2 mr-2">Cancel</button>
-          <button type='submit' className="btn btn-primary mt-2 mb-2">Update Card</button>
+          <button type='submit' className="btn btn-primary mt-2 mb-2">Save</button>
         </form>
       </div>
     );

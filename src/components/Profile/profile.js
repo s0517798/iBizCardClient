@@ -4,18 +4,18 @@ import { Link } from 'react-router-dom';
 import { Row, Col } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlusCircle } from '@fortawesome/free-solid-svg-icons'
-import { getCard, deleteCard } from '../../services/cardService';
+import { getCards, deleteCard } from '../../services/cardService';
 import './profile.css';
 
 
 class Profile extends Component {
   state = { 
-    card: []
+    cards: []
   }
 
   async componentDidMount() {
-    const { data:card } = await getCard()
-    this.setState({ card })
+    const { data:cards} = await getCards()
+    this.setState({ cards })
   }
 
   // Deleting a card
@@ -36,7 +36,7 @@ class Profile extends Component {
   
   render() { 
     const { user } = this.props
-    const { card } = this.state
+    const { cards } = this.state
     return ( 
       <main id='profile'>
       <div>
@@ -44,14 +44,14 @@ class Profile extends Component {
           <Col xs="12" sm="12" md="12">
             <CardUI 
               user={user} 
-              card={card} 
-              deleteCard={this.handleDeleteCard}
+              card={cards} 
+              onDeleteCard={this.handleDeleteCard}
             />
           </Col>
         </Row>
       </div>
       <div>
-        { user && card.length > 0 ? null : 
+        { user && cards.length > 0 ? null : 
           <div>
             <Link to='/profile/new'>
               <FontAwesomeIcon style={styles.addButton}  icon={faPlusCircle} />

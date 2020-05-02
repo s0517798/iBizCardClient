@@ -3,12 +3,16 @@ import { apiUrl } from '../config.json';
 
 const endPoint = apiUrl + '/cards';
 
+function cardUrl(id) {
+  return `${endPoint}/${id}`
+}
+
 export function getCards() {
   return http.get(endPoint)
 }
 
 export function getCard(cardId) {
-  return http.get(endPoint, cardId)
+  return http.get(cardUrl(cardId))
 }
 
 export function saveCard(card) {
@@ -17,7 +21,7 @@ export function saveCard(card) {
     delete theCard._id
     
     let accessToken = localStorage.getItem('accesstoken')
-    return http.put(endPoint + '/' + card._id, theCard, {
+    return http.put(cardUrl(card._id), theCard, {
       headers: {
         'accesstoken': accessToken,
         'Accept' : 'application/json',
@@ -30,7 +34,7 @@ export function saveCard(card) {
 }
 
 export function deleteCard(cardId) {
-  return http.delete(endPoint, cardId)
+  return http.delete(cardUrl(cardId))
 }
 
 export default {

@@ -1,4 +1,5 @@
 import jwtDecode from 'jwt-decode';
+import { Auth } from 'aws-amplify';
 
 function getcurrentUser() {
   try{
@@ -15,8 +16,18 @@ function getJwt() {
   return localStorage.getItem('accesstoken')
 }
 
+async function refreshToken() {
+  try{
+    const currentSession =  await Auth.currentSession();
+    return currentSession.refreshToken.token
+  }catch(ex) {
+    console.log('Not able to refresh token', ex);
+  }
+}
+
 
 export default {
   getcurrentUser,
-  getJwt
+  getJwt,
+  refreshToken
 }

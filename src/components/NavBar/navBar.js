@@ -7,7 +7,7 @@ const NavBar = ({ user, history }) => {
     <nav id='header-nav'>
       <div className='header-nav-inner'>
         <div className='header-logo'>
-          <img onClick={()=> history.push('/')} src={require('../images/ibc.png')} />
+          {/* <img onClick={()=> history.push('/home')} src={require('../images/ibc.png')} /> */}
         </div>
         <div className='header-nav-right'>
           <NavLink to='/' className='header-nav-link'>home</NavLink>
