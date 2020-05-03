@@ -21,24 +21,23 @@ class CardForm extends Component {
       if(cardId === 'new') return
 
       const { data: card } = await getCard(cardId)
-      console.log(card);
       this.setState({ data: this.cardViewModel(card) })
     } catch (ex) {
-      
+      console.log(ex);
     }
   }
 
   cardViewModel(card) {
     return {
-        _id: card[0]._id,
-        company: card[0].company,
-        slogan: card[0].slogan,
-        name: card[0].name,
-        profession: card[0].profession,
-        phone: card[0].phone,
-        email: card[0].email,
-        address: card[0].address,
-        website: card[0].website,
+        _id: card._id,
+        company: card.company,
+        slogan: card.slogan,
+        name: card.name,
+        profession: card.profession,
+        phone: card.phone,
+        email: card.email,
+        address: card.address,
+        website: card.website,
     }
   }
 
@@ -51,7 +50,6 @@ class CardForm extends Component {
   handleSubmit = async e => {
       e.preventDefault()
       await saveCard(this.state.data)
-      console.log('cliked',e);
       this.props.history.push('/profile')
   }
 

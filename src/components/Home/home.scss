@@ -1,0 +1,81 @@
+#home-container .card-list {	
+  overflow-y: auto;
+	float: left;
+	position: relative;
+  background-color: #F3F3F3;
+  height: 100vh;
+}
+
+#home-container .card-body-right {
+  display: flex;
+  justify-content: center;
+}
+
+#home-container .card-item {
+  width: 100%;
+  border: none;
+  text-align: start;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  background-color: #ffffff;
+  margin-bottom: 5px;
+  padding: 10px;
+  align-items: center;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#home-container .card-item:focus {
+  opacity: 1;
+  background-clip: border-box;
+  margin-bottom: 0.75rem;
+  margin-top: 0.75rem;
+  margin-left: 15px;
+  min-width: 0;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 15px;
+  position: relative;
+  word-wrap: break-word;
+  background-color: #197EE2;
+}
+
+#home-container .card-item-details {
+  display: flex;
+  align-items: center;
+}
+
+#home-container .card-avatar .sb-avatar__text {
+  background-color: #ff957d !important;
+  border: 1px solid #979797;
+}
+
+#home-container .card-user {
+  display: flex;
+  flex-direction: column;
+  padding: 0px 10px;
+}
+
+#home-container .card-username {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 19px;
+
+  color: #000000;
+}
+
+#home-container .messaging-options {
+  border-radius: 50%;
+  width: 10px;
+  height: 10px;
+  background-color: #17b582;
+}
+
+@media only screen and (max-width: 767.98px) {
+  .the-card .card-list {
+    height: fit-content;
+  }
+}

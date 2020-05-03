@@ -5,7 +5,7 @@ import { Row, Col } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlusCircle } from '@fortawesome/free-solid-svg-icons'
 import { getCards, deleteCard } from '../../services/cardService';
-import './profile.css';
+import './profile.scss';
 
 
 class Profile extends Component {
