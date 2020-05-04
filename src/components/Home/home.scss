@@ -19,11 +19,12 @@
   flex-direction: row;
   justify-content: space-between;
   background-color: #ffffff;
+  color: #000000;
   margin-bottom: 5px;
   padding: 10px;
   align-items: center;
   border-radius: 5px;
-  cursor: pointer;
+  text-decoration: none;
 }
 
 #home-container .card-item:focus {

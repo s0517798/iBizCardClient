@@ -9,7 +9,7 @@ class CardItem extends Component {
     return ( 
       <div>
         {this.props.users.map(user => (
-          <Link to={`home/${user._id}`} key={user._id} className="card-item">
+          <Link to={`profile/${user._id}`} key={user._id} className="card-item">
             <div className="card-item-details">
               <div className="card-avatar">
                 <Avatar size="80" color="red" round name={user.name} />

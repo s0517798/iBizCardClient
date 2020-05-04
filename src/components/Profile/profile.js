@@ -48,6 +48,8 @@ class Profile extends Component {
               onDeleteCard={this.handleDeleteCard}
             />
           </Col>
+          <Col>
+          </Col>
         </Row>
       </div>
       <div>
