@@ -36,7 +36,7 @@ class App extends Component {
   
             <Route path='/login' component={Login} />
             <Route path='/cards' component={Cards} />
-            <Route path='/home/:id' component={CardItem}/>
+            <Route path='/home/card' component={CardItem}/>
             <Route path='/home' render={props => {
               if(user) {
                 return <Home {...props} user={user} />

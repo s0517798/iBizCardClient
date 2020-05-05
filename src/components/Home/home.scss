@@ -80,3 +80,44 @@
     height: fit-content;
   }
 }
+
+
+
+//////////////////////// Card View //////////////////////
+#card-view {
+  margin: 10px;
+}
+
+#card-view .card-view-card {
+  border: 1px solid;
+  width: 350px;
+  height: 500px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 5px;
+}
+
+#card-view .card-logo{
+  margin-top: 20px;
+}
+#card-view .card-name-profession {
+  margin: 40px 0px;
+}
+#card-view .card-adress {
+  margin-bottom: 20px;
+}
+#card-view .card-phone {
+  margin-bottom: 20px;
+  
+}
+#card-view .card-email-website {
+  margin-bottom: 60px;
+
+}
+#card-view .card-qr-code {
+  justify-content: flex-end;
+  width: 100%;
+  display: flex;
+}

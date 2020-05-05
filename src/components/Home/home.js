@@ -1,11 +1,15 @@
 import React, { Component } from 'react';
 import { Row, Col } from 'reactstrap';
-import './home.scss';
+import { Link } from 'react-router-dom';
+import { getCards, deleteCard } from '../../services/cardService';
 import CardItem from './cardItem';
+import CardView from './cardView';
+import './home.scss';
 
 class Home extends Component {
   state = {  }
   render() { 
+    
     return ( 
       <div id="home-container" className="the-card">
       <Row>
@@ -18,9 +22,6 @@ class Home extends Component {
           xs="0"
         >
           <CardItem
-            OnSelect={id => {
-              this.props.history.push(`/profile/${id}`)
-            }}
             users={[
               {
                 _id: '1',
@@ -51,7 +52,8 @@ class Home extends Component {
           />
         </Col>
         <Col className='card-body-right'>
-          <div>Render each card here</div>
+          <CardView 
+          />
         </Col>
       </Row>
     </div>
