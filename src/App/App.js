@@ -14,6 +14,7 @@ import About from '../components/about/about';
 import auth from '../services/authService';
 import './App.css';
 import Cards from '../components/cards';
+import CardItem from '../components/Home/cardItem';
 
 class App extends Component {
   state = {}
@@ -35,6 +36,14 @@ class App extends Component {
   
             <Route path='/login' component={Login} />
             <Route path='/cards' component={Cards} />
+            <Route path='/home/card' component={CardItem}/>
+            <Route path='/home' render={props => {
+              if(user) {
+                return <Home {...props} user={user} />
+              }
+              return <LandingPage {...props} />}
+            }/>
+            <Route path='/about' component={About} />
             <Route path='/profile/:id' render={props => {
               if(!user) {
                 return <Redirect to='/login' />
@@ -42,13 +51,6 @@ class App extends Component {
               return <CardForm {...props} user={user} /> 
             }}/>
             <Route path='/profile' render={props => <Profile {...props} user={user} />} />
-            <Route path='/about' component={About} />
-            <Route path='/home' render={props => {
-              if(user) {
-                return <Home {...props} user={user} />
-              }
-              return <LandingPage {...props} />}
-            }/>
             
             <Route path='/not-found' component={NotFound} />
             <Redirect from='/' exact to='/home' />

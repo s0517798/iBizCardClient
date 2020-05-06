@@ -6,6 +6,7 @@ import Joi from 'joi'
 import './login.scss'
 
 
+
 const LoginForm = (props) => {
 
   
@@ -24,7 +25,7 @@ const LoginForm = (props) => {
 
   // const validate = () => {
   //   const { error } = Joi.validate(user, schema, { abortEarly:  false })
-   
+  
   //   if(!error) {
   //     return null
   //   }
@@ -91,7 +92,6 @@ const LoginForm = (props) => {
   return ( 
     <div id='login'>
       <div className='login-left'>
-
       </div>
       <div className='login-right'>
         <div className='login-right-form'>
@@ -108,7 +108,7 @@ const LoginForm = (props) => {
         </div>
       </div>
     </div>
-   );
+  );
 }
- 
+
 export default LoginForm;

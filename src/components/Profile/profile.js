@@ -5,7 +5,7 @@ import { Row, Col } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlusCircle } from '@fortawesome/free-solid-svg-icons'
 import { getCards, deleteCard } from '../../services/cardService';
-import './profile.css';
+import './profile.scss';
 
 
 class Profile extends Component {
@@ -38,18 +38,20 @@ class Profile extends Component {
     const { user } = this.props
     const { cards } = this.state
     return ( 
-      <main id='profile'>
-      <div>
-        <Row>
-          <Col xs="12" sm="12" md="12">
-            <CardUI 
-              user={user} 
-              card={cards} 
-              onDeleteCard={this.handleDeleteCard}
-            />
-          </Col>
-        </Row>
-      </div>
+      <div id='profile'>
+        <div>
+          <Row>
+            <Col xs="12" sm="12" md="12">
+              <CardUI 
+                user={user} 
+                card={cards} 
+                onDeleteCard={this.handleDeleteCard}
+              />
+            </Col>
+            <Col>
+            </Col>
+          </Row>
+        </div>
       <div>
         { user && cards.length > 0 ? null : 
           <div>
@@ -59,7 +61,7 @@ class Profile extends Component {
           </div>
         }
       </div>
-    </main>
+    </div>
     );
   }
 }

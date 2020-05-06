@@ -1,0 +1,163 @@
+#home-container .card-list {	
+  overflow-y: auto;
+	float: left;
+	position: relative;
+  background-color: #F3F3F3;
+  height: 100vh;
+}
+
+#home-container .card-body-right {
+  display: flex;
+  justify-content: center;
+}
+
+#home-container .card-item {
+  width: 100%;
+  border: none;
+  text-align: start;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  background-color: #ffffff;
+  color: #000000;
+  margin-bottom: 5px;
+  padding: 10px;
+  align-items: center;
+  border-radius: 5px;
+  text-decoration: none;
+}
+
+#home-container .card-item:focus {
+  opacity: 1;
+  background-clip: border-box;
+  margin-bottom: 0.75rem;
+  margin-top: 0.75rem;
+  margin-left: 15px;
+  min-width: 0;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 15px;
+  position: relative;
+  word-wrap: break-word;
+  background-color: #197EE2;
+}
+
+#home-container .card-item-details {
+  display: flex;
+  align-items: center;
+}
+
+#home-container .card-avatar .sb-avatar__text {
+  background-color: #ff957d !important;
+  border: 1px solid #979797;
+}
+
+#home-container .card-user {
+  display: flex;
+  flex-direction: column;
+  padding: 0px 10px;
+}
+
+#home-container .card-username {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 19px;
+
+  color: #000000;
+}
+
+#home-container .messaging-options {
+  border-radius: 50%;
+  width: 10px;
+  height: 10px;
+  background-color: #17b582;
+}
+
+@media only screen and (max-width: 767.98px) {
+  .the-card .card-list {
+    height: fit-content;
+  }
+}
+
+
+
+//////////////////////// Card View //////////////////////
+#card-view {
+  margin: 10px;
+  color: #ffffff;
+  background-color: gray;
+  background-image:
+  radial-gradient(rgb(255, 255, 255), rgba(138,201,214,.7) 200px, transparent 400px),
+  radial-gradient(rgb(189, 196, 198), rgba(255,255,255,.6) 300px, transparent 400px),
+  radial-gradient(rgb(255, 203, 170), rgba(138,201,214,.3) 400px, transparent 400px);
+  background-size: 1000px 500px, 700px 500px, 700px 500px; 
+  background-position: 0 -200px, 300px -100px, 700px -200px;
+  height: 500px;
+}
+
+#card-view .card-view-card {
+  border: 1px solid;
+  width: 350px;
+  height: 500px;
+  padding-left: 40px;
+  display: flex;
+  flex-direction: column;
+  border-radius: 5px;
+}
+
+#card-view .card-logo{
+  margin-top: 20px;
+  text-align: center;
+}
+
+#card-view .card-icons {
+  background-color: red;
+  margin-right: 10px;
+  padding: 3px;
+  width: 20px;
+  text-align: center;
+}
+
+#card-view .infos {
+  display: flex;
+  align-items: center;
+}
+
+#card-view .card-name-profession {
+  margin: 40px 0px;
+}
+
+#card-view .card-name {
+  font-size: 25px;
+  font-weight: 800;
+  margin-bottom: -10px;
+}
+
+#card-view .card-profession {
+  font-size: 15px;
+  font-weight: 800;
+}
+
+#card-view .card-adress {
+  margin-bottom: 20px;
+}
+
+#card-view .card-phone {
+  margin-bottom: 20px;
+  
+}
+#card-view .card-email-website {
+  margin-bottom: 60px;
+
+}
+#card-view .card-qr-code-container {
+  justify-content: flex-end;
+  // width: 100%;
+  padding: 20px;
+  display: flex;
+}
+#card-view .card-qr-code-container::after {
+
+}
