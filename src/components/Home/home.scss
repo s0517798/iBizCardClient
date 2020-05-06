@@ -86,28 +86,64 @@
 //////////////////////// Card View //////////////////////
 #card-view {
   margin: 10px;
+  color: #ffffff;
+  background-color: gray;
+  background-image:
+  radial-gradient(rgb(255, 255, 255), rgba(138,201,214,.7) 200px, transparent 400px),
+  radial-gradient(rgb(189, 196, 198), rgba(255,255,255,.6) 300px, transparent 400px),
+  radial-gradient(rgb(255, 203, 170), rgba(138,201,214,.3) 400px, transparent 400px);
+  background-size: 1000px 500px, 700px 500px, 700px 500px; 
+  background-position: 0 -200px, 300px -100px, 700px -200px;
+  height: 500px;
 }
 
 #card-view .card-view-card {
   border: 1px solid;
   width: 350px;
   height: 500px;
-  padding: 10px;
+  padding-left: 40px;
   display: flex;
   flex-direction: column;
-  align-items: center;
   border-radius: 5px;
 }
 
 #card-view .card-logo{
   margin-top: 20px;
+  text-align: center;
 }
+
+#card-view .card-icons {
+  background-color: red;
+  margin-right: 10px;
+  padding: 3px;
+  width: 20px;
+  text-align: center;
+}
+
+#card-view .infos {
+  display: flex;
+  align-items: center;
+}
+
 #card-view .card-name-profession {
   margin: 40px 0px;
 }
+
+#card-view .card-name {
+  font-size: 25px;
+  font-weight: 800;
+  margin-bottom: -10px;
+}
+
+#card-view .card-profession {
+  font-size: 15px;
+  font-weight: 800;
+}
+
 #card-view .card-adress {
   margin-bottom: 20px;
 }
+
 #card-view .card-phone {
   margin-bottom: 20px;
   
@@ -116,8 +152,12 @@
   margin-bottom: 60px;
 
 }
-#card-view .card-qr-code {
+#card-view .card-qr-code-container {
   justify-content: flex-end;
-  width: 100%;
+  // width: 100%;
+  padding: 20px;
   display: flex;
+}
+#card-view .card-qr-code-container::after {
+
 }
