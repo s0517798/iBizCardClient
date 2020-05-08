@@ -85,8 +85,9 @@
 
 //////////////////////// Card View //////////////////////
 #card-view {
+  font-family: sans-serif;
   margin: 10px;
-  color: #ffffff;
+  color: #284a85;
   background-color: gray;
   background-image:
   radial-gradient(rgb(255, 255, 255), rgba(138,201,214,.7) 200px, transparent 400px),
@@ -105,6 +106,7 @@
   display: flex;
   flex-direction: column;
   border-radius: 5px;
+  justify-content: space-between;
 }
 
 #card-view .card-logo{
@@ -113,7 +115,9 @@
 }
 
 #card-view .card-icons {
+  border-radius: 5px;
   background-color: red;
+  color: #ffffff;
   margin-right: 10px;
   padding: 3px;
   width: 20px;
@@ -125,13 +129,18 @@
   align-items: center;
 }
 
+#card-view .card-info-details {
+  margin-bottom: -5px;
+}
+
 #card-view .card-name-profession {
   margin: 40px 0px;
 }
 
 #card-view .card-name {
+  color: #e40000;
   font-size: 25px;
-  font-weight: 800;
+  font-weight: bolder;
   margin-bottom: -10px;
 }
 
@@ -141,11 +150,11 @@
 }
 
 #card-view .card-adress {
-  margin-bottom: 20px;
+
 }
 
 #card-view .card-phone {
-  margin-bottom: 20px;
+
   
 }
 #card-view .card-email-website {
@@ -155,9 +164,15 @@
 #card-view .card-qr-code-container {
   justify-content: flex-end;
   // width: 100%;
-  padding: 20px;
   display: flex;
 }
 #card-view .card-qr-code-container::after {
+background-color: #ff957d;
+}
 
+#card-view .card-qr-code {
+  margin: 10px;
+  width: 50px;
+  height: 50px;
+  border: 1px solid #fdffd4;
 }

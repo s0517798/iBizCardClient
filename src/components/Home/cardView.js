@@ -14,12 +14,11 @@ class CardView extends Component {
               <div className='card-name'>Withman Simprevil</div>
               <div className='card-profession'>Software Developer</div>
             </div>
-            
           </div>
           <div className='card-adress infos'>
             <FontAwesomeIcon className='card-icons' style={{cursor: 'pointer'}} size="lg" icon={faMapMarkerAlt} />
             <div>
-              <div>South Florida</div>
+              <div className='card-info-details'>South Florida</div>
               <div>united states 12345</div>
             </div>
           </div>
@@ -30,13 +29,12 @@ class CardView extends Component {
           <div className='card-email-website infos'>
             <FontAwesomeIcon className='card-icons' style={{cursor: 'pointer'}} size="lg" icon={faGlobe} />
             <div>
-              <div>withman.simprevil@gmail.com</div>
+              <div className='card-info-details'>withman.simprevil@gmail.com</div>
               <div>wwww.iWithman.com</div>
             </div>
           </div>
 
           <div className='card-qr-code-container'>
-            <div className='card-qr-shape'></div>
             <div className='card-qr-code'>qr code</div>
           </div>
         </div>
