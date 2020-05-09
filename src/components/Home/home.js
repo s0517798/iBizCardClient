@@ -1,13 +1,43 @@
 import React, { Component } from 'react';
 import { Row, Col } from 'reactstrap';
 import { Link } from 'react-router-dom';
+import auth from '../../services/authService';
 import { getCards, deleteCard } from '../../services/cardService';
 import CardItem from './cardItem';
 import CardView from './cardView';
 import './home.scss';
 
 class Home extends Component {
-  state = {  }
+  constructor() {
+    super()
+    this.state = {
+      selectedCard: null,
+      // current user that is logged in
+      email: null,
+      cards: []
+    }
+  }
+
+  async componentDidMount() {
+    // const user = auth.getCurrentUser()
+    // if(!user) {
+    //   this.props.history.push('/login')
+    // } else {
+      try {
+        const { data:cards } = await getCards()
+        this.setState({ cards })
+      } catch (ex) {
+        console.log(ex);
+      }
+    // }
+
+  }
+
+  selectCard = (cardIndex) => {
+    console.log(cardIndex);
+    // set the selected card to the index
+    this.setState({ selectedCard: cardIndex })
+  }
   render() { 
     
     return ( 
@@ -22,37 +52,18 @@ class Home extends Component {
           xs="0"
         >
           <CardItem
-            users={[
-              {
-                _id: '1',
-                company:"iBizCard",
-                name: "Withman Simprevil",
-                profession: "Software Developer"
-              },
-              {
-                _id: '2',
-                company:"WS Photography",
-                name: "Withman Simprevil",
-                profession: "Photographer"
-              },
-              {
-                _id: '3',
-                company:"JD&JC",
-                name: "Jean Joselyn",
-                profession: "Trucking"
-              },
-              {
-                _id: '4',
-                company:"iFixIt",
-                name: "Steve Simprevil",
-                profession: "AC Tech."
-              }
-            ]}
-          
+            selectCardFn={this.selectCard}
+            cards={this.state.cards}
+            userEmail={this.state.email}
+            selectedCardIndex={this.state.selectedCard}   
           />
         </Col>
         <Col className='card-body-right'>
-          <CardView 
+          <CardView
+            user={this.state.email}
+            // the index of that current card will be
+            // the current selected card
+            card={this.state.cards[this.state.selectedCard]}
           />
         </Col>
       </Row>

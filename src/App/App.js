@@ -3,18 +3,18 @@ import { Switch, Route, Redirect } from 'react-router-dom';
 import NavBar from '../components/NavBar/navBar';
 import Register from '../components/forms/register/register';
 import Login from '../components/forms/Login/login';
-import CardForm from '../components/forms/cardForm';
-import NotFound from '../components/notFound';
-import Home from '../components/Home/home';
-import Profile from '../components/Profile/profile';
-import Logout from '../components/logout';
 import LandingPage from '../components/LandingPage/landingPage';
-import Footer from '../components/Footer/footer';
+import Home from '../components/Home/home';
+import CardForm from '../components/forms/cardForm';
+import Profile from '../components/Profile/profile';
 import About from '../components/about/about';
-import auth from '../services/authService';
-import './App.css';
 import Cards from '../components/cards';
 import CardItem from '../components/Home/cardItem';
+import Footer from '../components/Footer/footer';
+import Logout from '../components/logout';
+import NotFound from '../components/notFound';
+import auth from '../services/authService';
+import './App.css';
 
 class App extends Component {
   state = {}
