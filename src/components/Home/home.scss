@@ -1,4 +1,8 @@
-#home-container .card-list {	
+#home-container .home-row {
+  margin: 0;
+}
+
+#home-container .card-list-col {	
   overflow-y: auto;
 	float: left;
 	position: relative;
@@ -6,9 +10,10 @@
   height: 100vh;
 }
 
-#home-container .card-body-right {
+#home-container .card-view-col {
   display: flex;
   justify-content: center;
+  background-color: #ffffff;
 }
 
 #home-container .card-item {
@@ -104,7 +109,7 @@
 
 #card-view:hover {
 
-  box-shadow: 1px 2px 4px 3px;
+  box-shadow: 0px 1px 5px 1px;
 }
 
 #card-view .card-view-card {

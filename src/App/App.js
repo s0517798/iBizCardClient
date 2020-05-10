@@ -15,6 +15,7 @@ import Logout from '../components/logout';
 import NotFound from '../components/notFound';
 import auth from '../services/authService';
 import './App.css';
+import CardView from '../components/Home/cardView';
 
 class App extends Component {
   state = {}
@@ -36,13 +37,6 @@ class App extends Component {
   
             <Route path='/login' component={Login} />
             <Route path='/cards' component={Cards} />
-            <Route path='/home/card' component={CardItem}/>
-            <Route path='/home' render={props => {
-              if(user) {
-                return <Home {...props} user={user} />
-              }
-              return <LandingPage {...props} />}
-            }/>
             <Route path='/about' component={About} />
             <Route path='/profile/:id' render={props => {
               if(!user) {
@@ -53,6 +47,13 @@ class App extends Component {
             <Route path='/profile' render={props => <Profile {...props} user={user} />} />
             
             <Route path='/not-found' component={NotFound} />
+            {/* <Route path='/:card' render={props => <Home {...props} />} /> */}
+            <Route path='/:id' render={props => {
+              if(user) {
+                return <Home {...props} user={user} />
+              }
+              return <LandingPage {...props} />}
+            }/>
             <Redirect from='/' exact to='/home' />
             <Redirect to='/not-found' />
           </Switch>

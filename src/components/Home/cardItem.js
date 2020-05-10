@@ -4,15 +4,14 @@ import { Link } from 'react-router-dom';
 
 class CardItem extends Component {
   state = {  }
-  selectCard = (index) => {
-    this.props.selectCardFn(index)
-  }
+ 
   render() { 
     return ( 
       <div>
         {this.props.cards.map((card, index) => (
-          <div 
-            onClick={() => this.selectCard(index)} 
+          <Link
+            to={`/${card._id}`}
+            onClick={() => this.props.selectCardFn(index)} 
             key={card._id} 
             className="card-item"
             selected={this.props.selectedCardIndex === index}
@@ -27,7 +26,7 @@ class CardItem extends Component {
                 <div>{card.profession}</div>
               </div>
             </div>
-          </div>
+          </Link>
         ))}
       </div>
     );

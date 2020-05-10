@@ -1,13 +1,4 @@
-*{
-    padding: 0;
-    margin: 0;
-    /* width: 100%; */
-}
-
-html, .register, body > div {
-    height: 100%
-  }
-
-main{
-    justify-content: center;
+html, body {
+    width: 100%;
+    height: 100%;
 }

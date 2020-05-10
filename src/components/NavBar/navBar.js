@@ -4,8 +4,8 @@ import './navBar.css'
 
 const NavBar = ({ user, history }) => {
   return ( 
-    <nav id='header-nav'>
-      <div className='header-nav-inner'>
+    <div id='header-nav'>
+      {/* <div className='header-nav-inner'> */}
         <div className='header-logo'>
           {/* <img onClick={()=> history.push('/home')} src={require('../images/ibc.png')} /> */}
         </div>
@@ -24,8 +24,8 @@ const NavBar = ({ user, history }) => {
             </Fragment>
           )}
         </div>
-      </div>
-    </nav>
+      {/* </div> */}
+    </div>
   );
 }
 

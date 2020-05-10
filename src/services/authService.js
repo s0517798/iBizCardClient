@@ -21,7 +21,7 @@ async function refreshToken() {
     const currentSession =  await Auth.currentSession();
     return currentSession.refreshToken.token
   }catch(ex) {
-    console.log('Not able to refresh token', ex);
+    console.log('Not able to refresh token:', ex);
   }
 }
 

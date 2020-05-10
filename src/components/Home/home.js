@@ -34,17 +34,15 @@ class Home extends Component {
   }
 
   selectCard = (cardIndex) => {
-    console.log(cardIndex);
     // set the selected card to the index
     this.setState({ selectedCard: cardIndex })
   }
   render() { 
-    
     return ( 
       <div id="home-container" className="the-card">
-      <Row>
+      <Row className='home-row'>
         <Col 
-          className='card-list'
+          className='card-list-col'
           xl="3"
           lg="4"
           md="4"
@@ -58,7 +56,7 @@ class Home extends Component {
             selectedCardIndex={this.state.selectedCard}   
           />
         </Col>
-        <Col className='card-body-right'>
+        <Col className='card-view-col'>
           <CardView
             user={this.state.email}
             // the index of that current card will be
