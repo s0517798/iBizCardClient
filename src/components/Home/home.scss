@@ -6,7 +6,7 @@
   overflow-y: auto;
 	float: left;
 	position: relative;
-  background-color: #F3F3F3;
+  background-color: #88bbd6;
   height: 100vh;
 }
 
@@ -85,7 +85,7 @@
 }
 
 @media only screen and (max-width: 767.98px) {
-  .the-card .card-list {
+  .home-container .card-list-col {
     height: fit-content;
   }
 }
@@ -104,10 +104,10 @@
   // radial-gradient(rgb(255, 203, 170), rgba(138,201,214,.3) 400px, transparent 400px);
   // background-size: 1000px 500px, 700px 500px, 700px 500px; 
   // background-position: 0 -200px, 300px -100px, 700px -200px;
-  height: 500px;
+  // height: 500px;
 }
 
-#card-view:hover {
+#card-view .card-view-card:hover {
 
   box-shadow: 0px 1px 5px 1px;
 }

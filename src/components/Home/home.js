@@ -56,7 +56,9 @@ class Home extends Component {
             selectedCardIndex={this.state.selectedCard}   
           />
         </Col>
-        <Col className='card-view-col'>
+        <Col className='card-view-col'
+          xl="9" lg="8" md="8" sm="12" xs="12"
+        >
           <CardView
             user={this.state.email}
             // the index of that current card will be
