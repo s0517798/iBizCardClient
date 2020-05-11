@@ -6,6 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlusCircle } from '@fortawesome/free-solid-svg-icons'
 import { getCards, deleteCard } from '../../services/cardService';
 import './profile.scss';
+import Avatar from 'react-avatar';
 
 
 class Profile extends Component {
@@ -39,7 +40,24 @@ class Profile extends Component {
     const { cards } = this.state
     return ( 
       <div id='profile'>
-        <div>
+        <h1>Profile</h1>
+        <hr />
+        <div className='profile-body'>
+          <div className='profile-left'>
+            <Row className='profile-card'>
+              <Col className='profile-avatar'>
+                <Avatar size="150" color="red" round />
+              </Col>
+              <Col className='profile-contact'>
+                <div>name</div>
+                <div>email</div>
+                <div>phone</div>
+              </Col>
+            </Row>
+          </div>
+          <div className='profile-right'>my Card info</div>
+        </div>
+        {/* <div>
           <Row>
             <Col xs="12" sm="12" md="12">
               <CardUI 
@@ -60,7 +78,7 @@ class Profile extends Component {
             </Link>
           </div>
         }
-      </div>
+      </div> */}
     </div>
     );
   }
