@@ -42,10 +42,19 @@ class Profile extends Component {
       <div id='profile'>
         <h1>Profile</h1>
         <hr />
-        <div className='profile-body'>
-          <div className='profile-left'>
+        <Row className='profile-body'>
+          <Col 
+            xl="3"
+            lg="4"
+            md="4"
+            sm="0"
+            xs="0" 
+            className='profile-left'
+          >
             <Row className='profile-card'>
-              <Col className='profile-avatar'>
+              <Col  
+                className='profile-avatar'
+              >
                 <Avatar size="150" color="red" round />
               </Col>
               <Col className='profile-contact'>
@@ -54,9 +63,16 @@ class Profile extends Component {
                 <div>phone</div>
               </Col>
             </Row>
-          </div>
-          <div className='profile-right'>my Card info</div>
-        </div>
+          </Col>
+          <Col  
+            xl="9" 
+            lg="8" 
+            md="8" 
+            sm="12" 
+            xs="12"
+            className='profile-right'
+          >my Card info</Col>
+        </Row>
         {/* <div>
           <Row>
             <Col xs="12" sm="12" md="12">
