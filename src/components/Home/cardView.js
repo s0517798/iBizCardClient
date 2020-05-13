@@ -13,11 +13,14 @@ class CardView extends Component {
     } else {
       return (
         <div key={card._id} id='card-view'>
+          <h1>{card.company}</h1>
           <div className='card-view-card'>
-            <div className='card-logo'>iBC</div>
+            <div className='card-logo'>logo</div>
             <div className='card-name-profession'>
               <div>
-                <div className='card-name'>{card.name}</div>
+                <div className='card-name'>
+                  <a target="blank" href={"http://www.google.com/search?q=" + card.name }>{card.name}</a>
+                </div>
                 <div className='card-profession'>{card.profession}</div>
               </div>
             </div>
@@ -30,13 +33,19 @@ class CardView extends Component {
             </div>
             <div className='card-phone infos'>
               <FontAwesomeIcon className='card-icons' style={{cursor: 'pointer'}} size="lg" icon={faPhone} />
-              <div>{card.phone}</div>
+              <div>
+                <a href={`tel: + ${card.phone}`}>{card.phone}</a>
+              </div>
             </div>
             <div className='card-email-website infos'>
               <FontAwesomeIcon className='card-icons' style={{cursor: 'pointer'}} size="lg" icon={faGlobe} />
               <div>
-                <div className='card-info-details'>{card.email}</div>
-                <div>{card.website}</div>
+                <div className='card-info-details'>
+                <a href={`mailto: + ${card.email}`}>{card.email}</a>
+                </div>
+                <div>
+                <a target="blank" href={`http://${card.website}`}>{card.website}</a>
+                </div>
               </div>
             </div>
   
