@@ -3,6 +3,8 @@ import { Row, Col } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import auth from '../../services/authService';
 import { getCards, deleteCard } from '../../services/cardService';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSearch  } from '@fortawesome/free-solid-svg-icons';
 import CardItem from './cardItem';
 import CardView from './cardView';
 import './home.scss';
@@ -49,6 +51,12 @@ class Home extends Component {
           sm="0"
           xs="0"
         >
+          <div className='search-bar'>
+            <h1 className='search-header'>
+              Cards
+            </h1>
+            <input placeholder='Search Cards'/>
+          </div>
           <CardItem
             selectCardFn={this.selectCard}
             cards={this.state.cards}
