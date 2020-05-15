@@ -14,8 +14,6 @@ class Home extends Component {
     super()
     this.state = {
       selectedCard: null,
-      // current user that is logged in
-      email: null,
       cards: []
     }
   }
@@ -39,6 +37,12 @@ class Home extends Component {
     // set the selected card to the index
     this.setState({ selectedCard: cardIndex })
   }
+
+  handleFavorite = (e) => {
+    
+  }
+  
+  
   render() { 
     return ( 
       <div id="home-container" className="the-card">
@@ -62,6 +66,7 @@ class Home extends Component {
             cards={this.state.cards}
             userEmail={this.state.email}
             selectedCardIndex={this.state.selectedCard}   
+            onFavorite={this.handleFavorite}
           />
         </Col>
         <Col className='card-view-col'

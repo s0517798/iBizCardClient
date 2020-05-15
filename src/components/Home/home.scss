@@ -40,7 +40,7 @@
   background-color: #ffffff;
   color: #000000;
   margin: 5px;
-  padding: 10px;
+  padding: 5px;
   align-items: center;
   border-radius: 5px;
   text-decoration: none;
@@ -69,8 +69,9 @@
 }
 
 #home-container .card-item-details {
-  display: flex;
-  align-items: center;
+
+  // align-items: center;
+  width: 100%;
 }
 
 #home-container .card-avatar .sb-avatar__text {
@@ -79,9 +80,9 @@
 }
 
 #home-container .card-user {
+  width: 100%;
+  margin: 5px;
   display: flex;
-  flex-direction: column;
-  padding: 0px 10px;
 }
 
 #home-container .card-username {
