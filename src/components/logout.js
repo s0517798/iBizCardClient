@@ -1,17 +1,15 @@
-import { useEffect } from 'react';
-import { Auth } from 'aws-amplify';
+import React, { Component } from 'react';
+import { logout } from '../firebase/authService'
 
-const Logout = () => {
+class Logout extends Component {
 
-  useEffect(() => {
-    Auth.signOut()
-    localStorage.removeItem('accesstoken')
-    // localStorage.removeItem('token')
-    console.log('User logged out...');
-    window.location = '/';
-  }, []);
-
-  return null
+  componentDidMount() {
+    logout()
+    window.location = '/'
+  }
+  render() { 
+    return ( null );
+  }
 }
- 
+
 export default Logout;

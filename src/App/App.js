@@ -1,8 +1,9 @@
 import React, { Component, Fragment } from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
+import { auth } from '../firebase/index';
 import NavBar from '../components/NavBar/navBar';
-import Register from '../components/forms/register/register';
-import Login from '../components/forms/Login/login';
+import RegisterForm from '../components/forms/register/registerForm';
+import LoginForm from '../components/forms/Login/loginForm';
 import LandingPage from '../components/LandingPage/landingPage';
 import Home from '../components/Home/home';
 import CardForm from '../components/forms/cardForm';
@@ -13,17 +14,20 @@ import CardItem from '../components/Home/cardItem';
 import Footer from '../components/Footer/footer';
 import Logout from '../components/logout';
 import NotFound from '../components/notFound';
-import auth from '../services/authService';
-import './App.css';
 import CardView from '../components/Home/cardView';
+import './App.css';
 
 class App extends Component {
   state = {}
 
   componentDidMount() {
-    const user = auth.getcurrentUser()
-    auth.refreshToken()
-    this.setState({ user })
+    auth.onAuthStateChanged((user) => {
+      if(user) {
+        console.log(user);
+        this.setState({ user })
+      }
+    })
+    
   }
   render() {
     const { user } = this.state;
@@ -33,9 +37,14 @@ class App extends Component {
         <div className='app'>
           <Switch>
             <Route path='/logout' component={Logout} />
-            <Route path='/register' component={Register} />
+            <Route path='/register' component={RegisterForm} />
   
-            <Route path='/login' component={Login} />
+            <Route path='/login' render={props => {
+              if(user) {
+                return <Redirect to='/' />
+              }
+              return <LoginForm {...props} user={user} /> 
+            }} />
             <Route path='/cards' component={Cards} />
             <Route path='/about' component={About} />
             <Route path='/profile/:id' render={props => {

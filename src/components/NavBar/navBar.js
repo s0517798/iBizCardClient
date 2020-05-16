@@ -19,7 +19,7 @@ const NavBar = ({ user, history }) => {
           )}
           { user && (
             <Fragment>
-              <NavLink to='/profile' className="nav-item nav-link header-nav-link">{user.username}</NavLink>
+              <NavLink to='/profile' className="nav-item nav-link header-nav-link">{user.email}</NavLink>
               <NavLink to='/logout' className="nav-item nav-link header-nav-link">Logout</NavLink>
             </Fragment>
           )}

@@ -1,5 +1,5 @@
 {
-  "name": "ibusiness-card-web",
+  "name": "ibizcard-web",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -8,10 +8,9 @@
     "@fortawesome/free-regular-svg-icons": "^5.12.1",
     "@fortawesome/free-solid-svg-icons": "^5.12.1",
     "@fortawesome/react-fontawesome": "^0.1.9",
-    "aws-amplify": "^1.3.3",
-    "aws-amplify-react": "^2.6.3",
     "axios": "^0.19.2",
     "bootstrap": "^4.4.1",
+    "firebase": "^7.14.4",
     "joi": "^14.3.1",
     "joi-browser": "^13.4.0",
     "jquery": "^3.4.1",
