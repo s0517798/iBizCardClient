@@ -1,87 +1,124 @@
 import React, { Component } from 'react';
 import { getCard, saveCard } from '../../services/cardService';
+import { db } from '../../firebase';
 
 class CardForm extends Component {
   state = { 
     data: {
+      // logo: '',
       company: '',
       slogan: '',
-      name: '',
+      fullName: '',
       profession: '',
+      address1: '',
+      address2: '',
       phone: '',
       email: '',
-      address: '',
       website: ''
-    }
+    },
+    errors: ''
   }
 
   async componentDidMount() {
+    
     try {
       const cardId = this.props.match.params.id
       if(cardId === 'new') return
 
-      const { data: card } = await getCard(cardId)
-      this.setState({ data: this.cardViewModel(card) })
+      // const { data: card } = await getCard(cardId)
+      // this.setState({ data: this.cardViewModel(card) })
     } catch (ex) {
       console.log(ex);
     }
   }
 
-  cardViewModel(card) {
-    return {
-        _id: card._id,
-        company: card.company,
-        slogan: card.slogan,
-        name: card.name,
-        profession: card.profession,
-        phone: card.phone,
-        email: card.email,
-        address: card.address,
-        website: card.website,
-    }
-  }
+  // cardViewModel(card) {
+  //   return {
+  //       _id: card._id,
+  //       logo: card.logo,
+  //       company: card.company,
+  //       slogan: card.slogan,
+  //       fullName: card.fullName,
+  //       profession: card.profession,
+  //       phone: card.phone,
+  //       email: card.email,
+  //       address1: card.address1,
+  //       address2: card.address2,
+  //       website: card.website,
+  //   }
+  // }
 
-  handleInputChange = ({ currentTarget: input }) => {
+  handleInputChange = (e) => {
+    const { name, value } = e.target;
     const data = {...this.state.data}
-    data[input.name] = input.value
+    data[name] = value
     this.setState({ data })
   }
 
   handleSubmit = async e => {
-      e.preventDefault()
-      await saveCard(this.state.data)
+    const { logo, company, slogan, fullName, profession, address1, address2, phone, email, website } = this.state.data  
+    e.preventDefault()
+    db.collection('cards').doc().set({ 
+      // logo: logo,
+      company: company,
+      slogan: slogan,
+      fullName: fullName,
+      profession: profession,
+      phone: phone,
+      email: email,
+      address1: address1,
+      address2: address2,
+      website: website
+    })
+      // await saveCard(this.state.data)
+      
       this.props.history.push('/profile')
   }
 
-  renderInput = (label, name, value) => {
+  renderInput = (label, name) => {
+    const { data } = this.state
     return (
       <div>
         <label className="mt-3">{label}</label>
-        <input type='text' className="form-control" name={name} value={value} onChange={this.handleInputChange} />
+        <input type='text' className="form-control" name={name} value={data[name]} onChange={this.handleInputChange} />
       </div>
     )
   } 
+
+  handleImageChange = e => {
+    if(e.target.files[0]) {
+      this.setState({ logo: e.target.files[0] })
+    }
+  }
+
+  renderImageInput = () => {
+    return (
+      <input type='file' placeholder='Upload your logo' onChange={this.handleImageChange}></input>
+    )
+  }
   
   goBack = () => {
     this.props.history.goBack()
   }
 
   render() { 
-    const { data: card } = this.state
+    const { data } = this.state
     return ( 
       <div style={{ margin: '15px' }}>
         <div>
           <h2>Card Form - {this.props.match.params.id}</h2>
         </div>
         <form onSubmit={this.handleSubmit}>
-          {this.renderInput('Company Name', 'company', card.company, 'company')} 
-          {this.renderInput('Slogan', 'slogan', card.slogan, 'slogan')} 
-          {this.renderInput('Name', 'name', card.name, 'name')} 
-          {this.renderInput('Profession', 'profession', card.profession, 'profession')} 
-          {this.renderInput('Phone', 'phone', card.phone, 'phone')} 
-          {this.renderInput('Email', 'email', card.email, 'email')} 
-          {this.renderInput('Address', 'address', card.address, 'address')} 
-          {this.renderInput('Website', 'website', card.website, 'website')} 
+          {/* {this.renderImageInput()} */}
+          {this.renderInput('Company Name', 'company')} 
+          {this.renderInput('Slogan', 'slogan')} 
+          {this.renderInput('Full name', 'fullName')} 
+          {this.renderInput('Profession', 'profession')} 
+          {this.renderInput('Phone', 'phone')} 
+          {this.renderInput('Email', 'email')} 
+          {this.renderInput('Address1', 'address1')} 
+          {this.renderInput('Address2', 'address2')} 
+          {this.renderInput('Website', 'website')} 
           <button onClick={this.goBack} type='button' className="btn btn-secondary mt-2 mb-2 mr-2">Cancel</button>
           <button type='submit' className="btn btn-primary mt-2 mb-2">Save</button>
         </form>

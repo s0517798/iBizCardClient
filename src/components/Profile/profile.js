@@ -71,7 +71,13 @@ class Profile extends Component {
             sm="12" 
             xs="12"
             className='profile-right'
-          >my Card info</Col>
+          >my Card info
+          <div>
+            <Link to='profile/new'>
+            ADD
+            </Link>
+          </div>
+          </Col>
         </Row>
         {/* <div>
           <Row>
