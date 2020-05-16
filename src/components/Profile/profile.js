@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import CardUI from '../cards/cardUI';
+import CardUI from '../old-cards/cardUI';
 import { Link } from 'react-router-dom';
 import { Row, Col } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlusCircle } from '@fortawesome/free-solid-svg-icons'
 import { getCards, deleteCard } from '../../services/cardService';
-import './profile.scss';
 import Avatar from 'react-avatar';
+import './profile.scss';
 
 
 class Profile extends Component {

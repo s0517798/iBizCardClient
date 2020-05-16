@@ -1,8 +1,8 @@
-#home-container .home-row {
+#card-container .card-row {
   margin: 0;
 }
 
-#home-container .card-list-col {	
+#card-container .card-list-col {	
   overflow-y: auto;
 	float: left;
 	position: relative;
@@ -11,26 +11,26 @@
   padding: 0;
 }
 
-#home-container .search-bar {
+#card-container .search-bar {
   color: #ffffff;
   text-align: center;
   margin: 5px;
 }
 
-#home-container .search-bar input {
+#card-container .search-bar input {
   border-radius: 10px;
   width: 100%;
   padding: 5px;
 }
 
-#home-container .card-view-col {
+#card-container .card-view-col {
   display: flex;
   justify-content: center;
   align-items: center;
   background-color: #ffffff;
 }
 
-#home-container .card-item {
+#card-container .card-item {
   // width: 100%;
   border: none;
   text-align: start;
@@ -46,11 +46,11 @@
   text-decoration: none;
 }
 
-#home-container .card-item:hover {
+#card-container .card-item:hover {
   background-color: #ecfaff;
 }
 
-  #home-container .card-item:focus {
+  #card-container .card-item:focus {
   opacity: 1;
   background-clip: border-box;
   margin-bottom: 0.75rem;
@@ -68,24 +68,24 @@
   border-left: 5px solid #ff957d;
 }
 
-#home-container .card-item-details {
+#card-container .card-item-details {
 
   // align-items: center;
   width: 100%;
 }
 
-#home-container .card-avatar .sb-avatar__text {
+#card-container .card-avatar .sb-avatar__text {
   background-color: #ff957d !important;
   border: 1px solid #979797;
 }
 
-#home-container .card-user {
+#card-container .card-user {
   width: 100%;
   margin: 5px;
   display: flex;
 }
 
-#home-container .card-username {
+#card-container .card-username {
   font-family: Roboto;
   font-style: normal;
   font-weight: 500;
@@ -95,7 +95,7 @@
   color: #000000;
 }
 
-#home-container .messaging-options {
+#card-container .messaging-options {
   border-radius: 50%;
   width: 10px;
   height: 10px;
@@ -103,7 +103,7 @@
 }
 
 @media only screen and (max-width: 767.98px) {
-  .home-container .card-list-col {
+  .card-container .card-list-col {
     height: fit-content;
   }
 }

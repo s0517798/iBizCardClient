@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faPhone, faMapMarkerAlt, faGlobe,faShare  } from '@fortawesome/free-solid-svg-icons'
-import './home.scss'
+import { faPhone, faMapMarkerAlt, faGlobe,faShareAlt  } from '@fortawesome/free-solid-svg-icons'
+import './cards.scss'
 class CardView extends Component {
   state = {  }
   render() { 
@@ -50,7 +50,7 @@ class CardView extends Component {
             </div>
   
             <div className='card-qr-code-container'>
-              <FontAwesomeIcon onClick={this.props.onShare} style={{cursor: 'pointer'}} size="lg" icon={faShare} />
+              <FontAwesomeIcon onClick={this.props.onShare} style={{cursor: 'pointer'}} size="lg" icon={faShareAlt} />
               <div className='card-qr-code'>qr code</div>
             </div>
           </div>

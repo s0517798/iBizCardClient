@@ -23,7 +23,7 @@ class LoginForm extends Component {
     e.preventDefault()
     try{
       await login(this.state.data)
-      window.location = '/home'
+      window.location = '/'
     }catch(ex) {
       this.setState({ errors: ex.message })
     }

@@ -7,9 +7,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch  } from '@fortawesome/free-solid-svg-icons';
 import CardItem from './cardItem';
 import CardView from './cardView';
-import './home.scss';
+import './cards.scss';
 
-class Home extends Component {
+class Cards extends Component {
   constructor() {
     super()
     this.state = {
@@ -43,14 +43,14 @@ class Home extends Component {
   }
 
   handleShare = () => {
-    
+
   }
   
   
   render() { 
     return ( 
-      <div id="home-container" className="the-card">
-      <Row className='home-row'>
+      <div id="card-container" className="the-card">
+      <Row className='card-row'>
         <Col 
           className='card-list-col'
           xl="3"
@@ -90,4 +90,4 @@ class Home extends Component {
   }
 }
 
-export default Home;
+export default Cards;

@@ -5,16 +5,12 @@ import NavBar from '../components/NavBar/navBar';
 import RegisterForm from '../components/forms/register/registerForm';
 import LoginForm from '../components/forms/Login/loginForm';
 import LandingPage from '../components/LandingPage/landingPage';
-import Home from '../components/Home/home';
+import Cards from '../components/Cards/cards';
 import CardForm from '../components/forms/cardForm';
 import Profile from '../components/Profile/profile';
 import About from '../components/about/about';
-import Cards from '../components/cards';
-import CardItem from '../components/Home/cardItem';
-import Footer from '../components/Footer/footer';
 import Logout from '../components/logout';
 import NotFound from '../components/notFound';
-import CardView from '../components/Home/cardView';
 import './App.css';
 
 class App extends Component {
@@ -45,7 +41,6 @@ class App extends Component {
               }
               return <LoginForm {...props} user={user} /> 
             }} />
-            <Route path='/cards' component={Cards} />
             <Route path='/about' component={About} />
             <Route path='/profile/:id' render={props => {
               if(!user) {
@@ -56,14 +51,14 @@ class App extends Component {
             <Route path='/profile' render={props => <Profile {...props} user={user} />} />
             
             <Route path='/not-found' component={NotFound} />
-            {/* <Route path='/:card' render={props => <Home {...props} />} /> */}
-            <Route path='/:id' render={props => {
+            <Route path='/cards' render={props => <Cards {...props} />} />
+            <Route path='/' render={props => {
               if(user) {
-                return <Home {...props} user={user} />
+                return <Cards {...props} user={user} />
               }
               return <LandingPage {...props} />}
             }/>
-            <Redirect from='/' exact to='/home' />
+            <Redirect from='/' exact to={user ? '/cards': '/home'} />
             <Redirect to='/not-found' />
           </Switch>
         </div>

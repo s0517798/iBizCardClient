@@ -13,7 +13,7 @@ class CardItem extends Component {
       <div>
         {this.props.cards.map((card, index) => (
           <Link
-            to={`/${card._id}`}
+            to={`/cards/${card._id}`}
             onClick={() => this.props.selectCardFn(index)} 
             key={card._id} 
             className="card-item"
