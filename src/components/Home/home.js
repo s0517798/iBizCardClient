@@ -39,6 +39,10 @@ class Home extends Component {
   }
 
   handleFavorite = (e) => {
+
+  }
+
+  handleShare = () => {
     
   }
   
@@ -76,6 +80,7 @@ class Home extends Component {
             user={this.state.email}
             // the index of that current card will be
             // the current selected card
+            onShare={this.handleShare}
             card={this.state.cards[this.state.selectedCard]}
           />
         </Col>
