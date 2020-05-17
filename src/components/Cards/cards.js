@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { Row, Col } from 'reactstrap';
 import { Link } from 'react-router-dom';
-import auth from '../../services/authService';
+import { auth, db } from '../../firebase/index';
+import firebase from '../../firebase/index'
 import { getCards, deleteCard } from '../../services/cardService';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch  } from '@fortawesome/free-solid-svg-icons';
@@ -14,7 +15,7 @@ class Cards extends Component {
     super()
     this.state = {
       selectedCard: null,
-      cards: []
+      data: []
     }
   }
 
@@ -23,14 +24,37 @@ class Cards extends Component {
     // if(!user) {
     //   this.props.history.push('/login')
     // } else {
-      try {
-        const { data:cards } = await getCards()
-        this.setState({ cards })
-      } catch (ex) {
-        console.log(ex);
-      }
+      auth.onAuthStateChanged(async user => {
+        if(user) {
+          // console.log('user logged in:', user);
+          try {
+              await firebase.firestore().collection('cards').onSnapshot(
+              snapshot => {
+                this.getData(snapshot.docs)
+              }
+            ) 
+          } catch (ex) {
+            const message = ex.message
+            console.log(message);
+            this.setState({ message })
+          }
+        } else {
+          this.setState({ data: []})
+        }
+      })
     // }
 
+  }
+
+  getData = (data) => {
+    let cards = []
+    data.forEach(doc => {
+      cards.push({
+        id: doc.id,
+        data: doc.data()
+      })
+    })
+    this.setState({ data: cards })
   }
 
   selectCard = (cardIndex) => {
@@ -45,6 +69,7 @@ class Cards extends Component {
   handleShare = () => {
 
   }
+  
   
   
   render() { 
@@ -67,7 +92,7 @@ class Cards extends Component {
           </div>
           <CardItem
             selectCardFn={this.selectCard}
-            cards={this.state.cards}
+            cards={this.state.data}
             userEmail={this.state.email}
             selectedCardIndex={this.state.selectedCard}   
             onFavorite={this.handleFavorite}
@@ -81,7 +106,7 @@ class Cards extends Component {
             // the index of that current card will be
             // the current selected card
             onShare={this.handleShare}
-            card={this.state.cards[this.state.selectedCard]}
+            card={this.state.data[this.state.selectedCard]}
           />
         </Col>
       </Row>

@@ -13,23 +13,23 @@ class CardItem extends Component {
       <div>
         {this.props.cards.map((card, index) => (
           <Link
-            to={`/cards/${card._id}`}
+            to={`/cards/${card.id}`}
             onClick={() => this.props.selectCardFn(index)} 
-            key={card._id} 
+            key={card.id} 
             className="card-item"
             selected={this.props.selectedCardIndex === index}
           >
             {/* <div className="card-item-details"> */}
               <div className="card-avatar">
-                <Avatar size="80" color="red" round name={card.name} />
+                <Avatar size="80" color="red" round name={card.data.fullName} />
               </div>
               <div className="card-user">
                 <div className='card-item-details'>
-                <div>{card.company}</div>
-                <div>{card.name}</div>
-                <div>{card.profession}</div>
+                <div>{card.data.company}</div>
+                <div>{card.data.fullName}</div>
+                <div>{card.data.profession}</div>
                 </div>
-                <FontAwesomeIcon onClick={this.props.onFavorite} className='save-card' icon={emptyStar} />
+                {/* <FontAwesomeIcon onClick={this.props.onFavorite} className='save-card' icon={emptyStar} /> */}
               </div>
             {/* </div> */}
           </Link>

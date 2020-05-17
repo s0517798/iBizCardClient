@@ -55,6 +55,15 @@ class CardForm extends Component {
     this.setState({ data })
   }
 
+  formatPhoneNumber = (number) => {
+    var cleaned = ('' + number).replace(/\D/g, '')
+    var match = cleaned.match(/^(\d{3})(\d{3})(\d{4})$/)
+    if (match) {
+      return '(' + match[1] + ') ' + match[2] + '-' + match[3]
+    }
+    return null
+  }
+
   handleSubmit = async e => {
     const { logo, company, slogan, fullName, profession, address1, address2, phone, email, website } = this.state.data  
     e.preventDefault()
@@ -64,7 +73,7 @@ class CardForm extends Component {
       slogan: slogan,
       fullName: fullName,
       profession: profession,
-      phone: phone,
+      phone: this.formatPhoneNumber(phone),
       email: email,
       address1: address1,
       address2: address2,
