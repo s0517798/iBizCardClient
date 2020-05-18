@@ -12,7 +12,7 @@ class CardView extends Component {
       )
     } else {
       return (
-        <div key={card._id} id='card-view'>
+        <div key={card.id} id='card-view'>
           <h1>{card.data.company}</h1>
           <div className='card-view-card'>
             <div className='card-logo'>logo</div>

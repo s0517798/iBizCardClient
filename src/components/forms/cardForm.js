@@ -25,28 +25,32 @@ class CardForm extends Component {
       const cardId = this.props.match.params.id
       if(cardId === 'new') return
 
-      // const { data: card } = await getCard(cardId)
-      // this.setState({ data: this.cardViewModel(card) })
+      const { data: card } = db
+        .collection('cards')
+        .doc(cardId)
+        .get()
+        .then(doc => {
+          this.setState({ data: this.cardViewModel(doc.data()) })
+        })
     } catch (ex) {
       console.log(ex);
     }
   }
 
-  // cardViewModel(card) {
-  //   return {
-  //       _id: card._id,
-  //       logo: card.logo,
-  //       company: card.company,
-  //       slogan: card.slogan,
-  //       fullName: card.fullName,
-  //       profession: card.profession,
-  //       phone: card.phone,
-  //       email: card.email,
-  //       address1: card.address1,
-  //       address2: card.address2,
-  //       website: card.website,
-  //   }
-  // }
+  cardViewModel(card) {
+    return {
+        // logo: card.logo,
+        company: card.company,
+        slogan: card.slogan,
+        fullName: card.fullName,
+        profession: card.profession,
+        phone: card.phone,
+        email: card.email,
+        address1: card.address1,
+        address2: card.address2,
+        website: card.website,
+    }
+  }
 
   handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -66,8 +70,9 @@ class CardForm extends Component {
 
   handleSubmit = async e => {
     const { logo, company, slogan, fullName, profession, address1, address2, phone, email, website } = this.state.data  
+    const cardId = this.props.match.params.id
     e.preventDefault()
-    db.collection('cards').doc().set({ 
+    db.collection('cards').doc(cardId).set({ 
       // logo: logo,
       company: company,
       slogan: slogan,
