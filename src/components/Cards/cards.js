@@ -62,6 +62,23 @@ class Cards extends Component {
     this.setState({ selectedCard: cardIndex })
   }
 
+  handleDelete = (card) => {
+    const initialCard = this.state.data;
+    const cardId = this.props.match.params.id
+    console.log(cardId);
+    console.log(this.props.match.params);
+    const data = initialCard.filter(c => c.id !== card.id)
+    this.setState({ data })
+
+    try {
+      db.collection('cards').doc(cardId).delete().then(() => {
+        console.log('succefully deleted.');
+      })
+    } catch (ex) {
+      
+    }
+  }
+
   handleFavorite = (e) => {
 
   }
@@ -73,6 +90,7 @@ class Cards extends Component {
   
   
   render() { 
+    console.log(this.props.match.params.id);
     return ( 
       <div id="card-container" className="the-card">
       <Row className='card-row'>
@@ -105,6 +123,7 @@ class Cards extends Component {
             user={this.state.email}
             // the index of that current card will be
             // the current selected card
+            onDelete={this.handleDelete}
             onShare={this.handleShare}
             card={this.state.data[this.state.selectedCard]}
           />

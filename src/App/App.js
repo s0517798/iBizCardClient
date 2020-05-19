@@ -50,7 +50,7 @@ class App extends Component {
             <Route path='/profile' render={props => <Profile {...props} user={user} />} />
             
             <Route path='/not-found' component={NotFound} />
-            <Route path='/cards' render={props => <Cards {...props} />} />
+            <Route path='/cards/:id' render={props => <Cards {...props} />} />
             <Route path='/' render={props => {
               if(user) {
                 return <Cards {...props} user={user} />

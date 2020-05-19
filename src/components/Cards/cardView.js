@@ -53,7 +53,8 @@ class CardView extends Component {
   
             <div className='card-qr-code-container'>
               <FontAwesomeIcon onClick={this.props.onShare} style={{cursor: 'pointer'}} size="lg" icon={faShareAlt} />
-              <div className='card-qr-code'>qr code</div>
+              {/* <div className='card-qr-code'>qr code</div> */}
+              <div onClick={() => this.props.onDelete(card)} className='card-qr-code'>delete</div>
             </div>
           </div>
         </div>

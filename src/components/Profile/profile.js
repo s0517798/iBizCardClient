@@ -2,42 +2,44 @@ import React, { Component } from 'react';
 import CardUI from '../old-cards/cardUI';
 import { Link } from 'react-router-dom';
 import { Row, Col } from 'reactstrap';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faPlusCircle } from '@fortawesome/free-solid-svg-icons'
 import { getCards, deleteCard } from '../../services/cardService';
 import Avatar from 'react-avatar';
+import { db, storage } from '../../firebase';
 import './profile.scss';
 
 
 class Profile extends Component {
   state = { 
-    cards: []
+    image: null,
+    url: 'http://via.placeholder.com/150x130',
+    message: ''
   }
 
-  async componentDidMount() {
-    const { data:cards} = await getCards()
-    this.setState({ cards })
-  }
-
-  // Deleting a card
-  handleDeleteCard = async card => {
-    const initialCard = this.state.cards;
-    const cards = initialCard.filter(c => c._id !== card._id)
-    this.setState({ cards })
-    
-    try {
-      await deleteCard(card._id)
-    } catch(ex) {
-      if(ex) {
-        console.log(ex);
-      }
-      this.setState({ initialCard })
+  handleImageChange = e => {
+    if(e.target.files[0]) {
+      this.setState({ image: e.target.files[0] })
     }
+  }
+
+  handleUpload = (e) => {
+    const { image } = this.state
+
+    e.preventDefault()
+    try {
+      const user = this.props.user
+      const photo = storage.ref(`users/${user.uid}/${image.name}`).put(image)
+      console.log('successfully uploaded', photo);
+    } catch (ex) {
+      const error = ex.message
+      this.setState({ error })
+    }
+
   }
   
   render() { 
     const { user } = this.props
-    const { cards } = this.state
+    const { cards, imageUrl } = this.state
+    console.log(imageUrl);
     return ( 
       <div id='profile'>
         <h1>Profile</h1>
@@ -55,7 +57,11 @@ class Profile extends Component {
               <Col  
                 className='profile-avatar'
               >
-                <Avatar size="150" color="red" round />
+                <div className='image-upload'>
+                <Avatar size="150" color="red" round src={ this.state.url } />
+                <input type='file' onChange={this.handleImageChange}></input>
+                <button onClick={this.handleUpload}>upload</button>
+                </div>
               </Col>
               <Col className='profile-contact'>
                 <div>name</div>
