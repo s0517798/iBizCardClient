@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { Row, Col } from 'reactstrap';
 import { getCards, deleteCard } from '../../services/cardService';
 import Avatar from 'react-avatar';
-import { db, storage } from '../../firebase';
+import { db, storage, auth } from '../../firebase';
 import './profile.scss';
 
 
@@ -27,8 +27,9 @@ class Profile extends Component {
     e.preventDefault()
     try {
       const user = this.props.user
-      const photo = storage.ref(`users/${user.uid}/${image.name}`).put(image)
-      console.log('successfully uploaded', photo);
+      const uploadTask = storage.ref(`users/${user.uid}/${image.name}`).put(image)
+      // console.log('successfully uploaded', photo);
+      this.setState({ uploadTask })
     } catch (ex) {
       const error = ex.message
       this.setState({ error })
@@ -37,9 +38,7 @@ class Profile extends Component {
   }
   
   render() { 
-    const { user } = this.props
-    const { cards, imageUrl } = this.state
-    console.log(imageUrl);
+    const { user, photoUrl } = this.props
     return ( 
       <div id='profile'>
         <h1>Profile</h1>
@@ -58,9 +57,8 @@ class Profile extends Component {
                 className='profile-avatar'
               >
                 <div className='image-upload'>
-                <Avatar size="150" color="red" round src={ this.state.url } />
-                <input type='file' onChange={this.handleImageChange}></input>
-                <button onClick={this.handleUpload}>upload</button>
+                <Avatar size="150" color="red" round src={ photoUrl } />
+                
                 </div>
               </Col>
               <Col className='profile-contact'>
@@ -79,6 +77,8 @@ class Profile extends Component {
             className='profile-right'
           >my Card info
           <div>
+            <input type='file' onChange={this.handleImageChange}></input>
+            <button onClick={this.handleUpload}>upload</button>
             <Link to='profile/new'>
             ADD
             </Link>

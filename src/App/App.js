@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
-import { auth } from '../firebase/index';
+import { auth, storage } from '../firebase/index';
 import NavBar from '../components/NavBar/navBar';
 import RegisterForm from '../components/forms/register/registerForm';
 import LoginForm from '../components/forms/Login/loginForm';
@@ -14,18 +14,26 @@ import NotFound from '../components/notFound';
 import './App.css';
 
 class App extends Component {
-  state = {}
+  state = {
+    photoUrl: 'http://via.placeholder.com/150x130'
+  }
 
   componentDidMount() {
-    auth.onAuthStateChanged((user) => {
+    auth.onAuthStateChanged(async (user) => {
       if(user) {
         this.setState({ user })
+        await storage
+        .ref(`users/${user.uid}/04_Desktop.jpg`)
+        .getDownloadURL()
+        .then(photoUrl => {
+          this.setState({ photoUrl })
+        })
       }
     })
     
   }
   render() {
-    const { user } = this.state;
+    const { user, photoUrl } = this.state;
     return ( 
       <Fragment>
         <NavBar user={user} />
@@ -47,10 +55,10 @@ class App extends Component {
               }
               return <CardForm {...props} user={user} /> 
             }}/>
-            <Route path='/profile' render={props => <Profile {...props} user={user} />} />
+            <Route path='/profile' render={props => <Profile {...props} user={user} photoUrl={photoUrl} />} />
             
             <Route path='/not-found' component={NotFound} />
-            <Route path='/cards/:id' render={props => <Cards {...props} />} />
+            <Route path='/cards/:id' render={props => <Cards {...props} photoUrl={photoUrl} />} />
             <Route path='/' render={props => {
               if(user) {
                 return <Cards {...props} user={user} />

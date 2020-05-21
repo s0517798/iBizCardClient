@@ -90,7 +90,6 @@ class Cards extends Component {
   
   
   render() { 
-    console.log(this.props.match.params.id);
     return ( 
       <div id="card-container" className="the-card">
       <Row className='card-row'>
@@ -109,6 +108,7 @@ class Cards extends Component {
             <input placeholder='Search Cards'/>
           </div>
           <CardItem
+            onPhotoUrl={this.props.photoUrl}
             selectCardFn={this.selectCard}
             cards={this.state.data}
             userEmail={this.state.email}
