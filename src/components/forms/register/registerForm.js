@@ -7,7 +7,7 @@ import './register.scss'
 class RegisterForm extends Component {
   state = { 
     data: {
-      // displayName: '',
+      displayName: '',
       email: '',
       password: '',
       // phone: null,
@@ -27,9 +27,21 @@ class RegisterForm extends Component {
   }
 
   handleSubmit = async (e) => {
+    const { displayName } = this.state
     e.preventDefault()
     try {
-      await register(this.state.data)
+      await register(this.state.data).then(
+        (user) => {
+          if(user) {
+            user.user.updateProfile({
+              displayName: displayName
+            }).catch(er => {
+              let errors = er.message
+              this.setState({ errors })
+            })
+          }
+        }
+      )
       this.setState({ errors: 'Registered! You may now log in.'})
     } catch (ex) {
       this.setState({ errors: ex.message })
@@ -96,6 +108,7 @@ class RegisterForm extends Component {
               <div>{this.registerState()}</div>
               <div>{message}</div>
               {/* {renderInput('Username', 'username', user.company)}  */}
+              {this.renderInput('Display Name', 'displayName')}
               {this.renderInput('Email', 'email')} 
               {this.renderInput('Password', 'password')}
               <div className='register-button'>
