@@ -27,13 +27,13 @@ class RegisterForm extends Component {
   }
 
   handleSubmit = async (e) => {
-    const { displayName } = this.state
+    const { displayName } = this.state.data
     e.preventDefault()
     try {
       await register(this.state.data).then(
-        (user) => {
-          if(user) {
-            user.user.updateProfile({
+        (cred) => {
+          if(cred) {
+            cred.user.updateProfile({
               displayName: displayName
             }).catch(er => {
               let errors = er.message

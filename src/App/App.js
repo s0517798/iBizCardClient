@@ -15,13 +15,16 @@ import './App.css';
 
 class App extends Component {
   state = {
-    photoUrl: 'http://via.placeholder.com/150x130'
+    photoUrl: 'http://via.placeholder.com/150x130',
+    displayName: '',
+    email: ''
   }
 
   componentDidMount() {
     auth.onAuthStateChanged(async (user) => {
       if(user) {
-        this.setState({ user })
+        const { displayName, email } = user
+        this.setState({ user, displayName, email })
         await storage
         .ref(`users/${user.uid}/04_Desktop.jpg`)
         .getDownloadURL()
@@ -33,7 +36,7 @@ class App extends Component {
     
   }
   render() {
-    const { user, photoUrl } = this.state;
+    const { user, photoUrl, displayName, email } = this.state;
     return ( 
       <Fragment>
         <NavBar user={user} />
@@ -55,7 +58,7 @@ class App extends Component {
               }
               return <CardForm {...props} user={user} /> 
             }}/>
-            <Route path='/profile' render={props => <Profile {...props} user={user} photoUrl={photoUrl} />} />
+            <Route path='/profile' render={props => <Profile {...props} user={user} photoUrl={photoUrl} displayName={displayName} email={email} />} />
             
             <Route path='/not-found' component={NotFound} />
             <Route path='/cards/:id' render={props => <Cards {...props} photoUrl={photoUrl} />} />

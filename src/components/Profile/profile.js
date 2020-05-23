@@ -28,7 +28,7 @@ class Profile extends Component {
     try {
       const user = this.props.user
       const uploadTask = storage.ref(`users/${user.uid}/${image.name}`).put(image)
-      // console.log('successfully uploaded', photo);
+      console.log('successfully uploaded', uploadTask);
       this.setState({ uploadTask })
     } catch (ex) {
       const error = ex.message
@@ -38,7 +38,7 @@ class Profile extends Component {
   }
   
   render() { 
-    const { user, photoUrl } = this.props
+    const { user, displayName, email, photoUrl } = this.props
     return ( 
       <div id='profile'>
         <h1>Profile</h1>
@@ -62,8 +62,8 @@ class Profile extends Component {
                 </div>
               </Col>
               <Col className='profile-contact'>
-                <div>name</div>
-                <div>email</div>
+                <div>{displayName}</div>
+                <div>{email}</div>
                 <div>phone</div>
               </Col>
             </Row>
