@@ -70,9 +70,8 @@ class CardForm extends Component {
 
   handleSubmit = async e => {
     const { logo, company, slogan, fullName, profession, address1, address2, phone, email, website } = this.state.data  
-    const cardId = this.props.match.params.id
     e.preventDefault()
-    db.collection('cards').doc(cardId).set({ 
+    db.collection('cards').doc().set({ 
       // logo: logo,
       company: company,
       slogan: slogan,
@@ -86,7 +85,7 @@ class CardForm extends Component {
     })
       // await saveCard(this.state.data)
       
-      this.props.history.push('/profile')
+      this.props.history.push('/cards')
   }
 
   renderInput = (label, name) => {
