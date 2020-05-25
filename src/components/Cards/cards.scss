@@ -138,7 +138,8 @@
   border: 1px solid #88bbd6;
   width: 350px;
   height: 500px;
-  padding-left: 40px;
+  // padding-left: 40px;
+  padding: 20px;
   display: flex;
   flex-direction: column;
   border-radius: 5px;
@@ -211,6 +212,7 @@
   justify-content: space-between;
   align-items: center;
   display: flex;
+  // margin: 10px;
 }
 
 #card-view .card-qr-code-container::after {
@@ -218,9 +220,46 @@ background-color: #ff957d;
 }
 
 #card-view .card-qr-code {
-  margin: 10px;
+  
   width: 50px;
   height: 50px;
   // border: 1px solid #fdffd4;
   border: 1px solid #000000;
+}
+
+#share-card-modal .modal {
+  width: 300px;
+  position:fixed;
+   top:auto;
+   right:auto;
+   left:auto;
+   bottom:0;
+}
+
+#share-card-modal .modal-dialog {
+  position:fixed;
+   top:auto;
+   right:auto;
+   left:auto;
+   bottom: 50px; 
+   width: 100%;
+}  
+
+#share-card-modal .modal-content {
+  background-color: #ff957d;
+  display: flex;
+  justify-content: space-around;
+  flex-direction: row;
+}
+
+@media only screen and (max-width: 767.98px) {
+  
+  #share-card-modal .modal-dialog {
+    
+    
+  }
+  
+  #share-card-modal .modal-content {
+
+  }
 }
