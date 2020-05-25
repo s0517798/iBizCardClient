@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUserFriends, faPlug, faShare  } from '@fortawesome/free-solid-svg-icons';
+import { storage } from '../../../firebase/index';
 import { register } from '../../../firebase/userService';
 import './register.scss'
 
@@ -11,12 +12,19 @@ class RegisterForm extends Component {
       email: '',
       password: '',
       // phone: null,
-      // photoURL: null
+      photoURL: null
     },
+    image: null,
     errors: '',
     message: ''
     // authCode: '',
     // showConfirmation: false
+  }
+  
+  handleImageChange = e => {
+    if(e.target.files[0]) {
+      this.setState({ image: e.target.files[0] })
+    }
   }
 
   handleInputChange = (e) => {
@@ -28,21 +36,24 @@ class RegisterForm extends Component {
 
   handleSubmit = async (e) => {
     const { displayName } = this.state.data
+    const { image } = this.state
     e.preventDefault()
     try {
       await register(this.state.data).then(
-        (cred) => {
-          if(cred) {
-            cred.user.updateProfile({
+        (auth) => {
+          if(auth) {
+            storage.ref(`users/${auth.user.uid}/${image.name}`).put(image)
+            auth.user.updateProfile({
               displayName: displayName
             }).catch(er => {
               let errors = er.message
+              console.log(errors);
               this.setState({ errors })
             })
           }
         }
       )
-      this.setState({ errors: 'Registered! You may now log in.'})
+      window.location = '/'
     } catch (ex) {
       this.setState({ errors: ex.message })
     }
@@ -75,11 +86,12 @@ class RegisterForm extends Component {
     }catch(ex) {
       
     }
-    
   }
 
   render() {
     const { data, message } = this.state
+    console.log(this.state.data.displayName);
+    console.log('photo',this.state.image);
     return ( 
       <div id='register'>
         <div className='register-left'>
@@ -107,7 +119,7 @@ class RegisterForm extends Component {
               </div>
               <div>{this.registerState()}</div>
               <div>{message}</div>
-              {/* {renderInput('Username', 'username', user.company)}  */}
+              <input type='file' onChange={this.handleImageChange}></input>
               {this.renderInput('Display Name', 'displayName')}
               {this.renderInput('Email', 'email')} 
               {this.renderInput('Password', 'password')}

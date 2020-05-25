@@ -26,7 +26,7 @@ class App extends Component {
         const { displayName, email } = user
         this.setState({ user, displayName, email })
         await storage
-        .ref(`users/${user.uid}/04_Desktop.jpg`)
+        .ref(`users/${user.uid}/WS.jpg`)
         .getDownloadURL()
         .then(photoUrl => {
           this.setState({ photoUrl })
@@ -61,7 +61,7 @@ class App extends Component {
             <Route path='/profile' render={props => <Profile {...props} user={user} photoUrl={photoUrl} displayName={displayName} email={email} />} />
             
             <Route path='/not-found' component={NotFound} />
-            <Route path='/cards/:id' render={props => <Cards {...props} photoUrl={photoUrl} />} />
+            <Route path='/cards/:id' render={props => <Cards {...props} />} />
             <Route path='/' render={props => {
               if(user) {
                 return <Cards {...props} user={user} />

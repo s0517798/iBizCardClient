@@ -21,7 +21,7 @@ class CardItem extends Component {
           >
             {/* <div className="card-item-details"> */}
               <div className="card-avatar">
-                <Avatar size="80" color="red" round src={this.props.onPhotoUrl} />
+                <Avatar size="80" color="red" round name={card.data.fullName} />
               </div>
               <div className="card-user">
                 <div className='card-item-details'>
