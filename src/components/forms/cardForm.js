@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { getCard, saveCard } from '../../services/cardService';
+import { getCard, saveCard } from '../../firebase/cardService';
 import { db } from '../../firebase';
 
 class CardForm extends Component {
@@ -25,13 +25,14 @@ class CardForm extends Component {
       const cardId = this.props.match.params.id
       if(cardId === 'new') return
 
-      const { data: card } = db
+      // const card = await getCard(cardId)
+      // this.setState({ data: this.cardViewModel(card.data())  })
+
+      const doc = await db
         .collection('cards')
         .doc(cardId)
         .get()
-        .then(doc => {
-          this.setState({ data: this.cardViewModel(doc.data()) })
-        })
+        this.setState({ data: this.cardViewModel(doc.data()) })
     } catch (ex) {
       console.log(ex);
     }
@@ -40,6 +41,7 @@ class CardForm extends Component {
   cardViewModel(card) {
     return {
         // logo: card.logo,
+        // id: card.id,
         company: card.company,
         slogan: card.slogan,
         fullName: card.fullName,
@@ -68,9 +70,10 @@ class CardForm extends Component {
     return null
   }
 
-  handleSubmit = async e => {
-    const { logo, company, slogan, fullName, profession, address1, address2, phone, email, website } = this.state.data  
+  handleSubmit = async (e) => {
     e.preventDefault()
+    const { logo, company, slogan, fullName, profession, address1, address2, phone, email, website } = this.state.data  
+
     db.collection('cards').doc().set({ 
       // logo: logo,
       company: company,
@@ -115,7 +118,6 @@ class CardForm extends Component {
   }
 
   render() { 
-    const { data } = this.state
     return ( 
       <div style={{ margin: '15px' }}>
         <div>

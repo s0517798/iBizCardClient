@@ -2,12 +2,13 @@ import React, { Component } from 'react';
 import { Row, Col } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import { auth, db } from '../../firebase/index';
+import { getCards, deleteCard } from '../../firebase/cardService';
 import firebase from '../../firebase/index'
+import { toast } from 'react-toastify';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch  } from '@fortawesome/free-solid-svg-icons';
 import CardItem from './cardItem';
 import CardView from './cardView';
-import { getCards } from '../../firebase/cardService';
 import './cards.scss';
 
 class Cards extends Component {
@@ -63,20 +64,21 @@ class Cards extends Component {
     this.setState({ selectedCard: cardIndex })
   }
 
-  handleDelete = (card) => {
+  handleDelete = async (card) => {
     const initialCard = this.state.data;
     const cardId = this.props.match.params.id
-    console.log(cardId);
-    console.log(this.props.match.params);
+
     const data = initialCard.filter(c => c.id !== card.id)
     this.setState({ data })
 
     try {
-      db.collection('cards').doc(cardId).delete().then(() => {
-        console.log('succefully deleted.');
-      })
+      await deleteCard(cardId)
     } catch (ex) {
-      
+      if(ex.response && ex.response.status === 404) {
+        toast.error('This card deleted already.')
+
+        this.setState({ data: initialCard })
+      }
     }
   }
 

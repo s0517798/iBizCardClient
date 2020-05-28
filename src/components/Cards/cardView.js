@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPhone, faMapMarkerAlt, faGlobe,faShareAlt  } from '@fortawesome/free-solid-svg-icons'
 import './cards.scss'
@@ -51,11 +52,11 @@ class CardView extends Component {
                 </div>
               </div>
             </div>
-  
             <div className='card-qr-code-container'>
               <ShareCardModal />
               <div onClick={() => this.props.onDelete(card)} className='card-qr-code'>delete</div>
             </div>
+            {/* <Link to={`/profile/${card.id}`}>edit</Link> */}
           </div>
         </div>
       )
