@@ -3,11 +3,11 @@ import { Row, Col } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import { auth, db } from '../../firebase/index';
 import firebase from '../../firebase/index'
-import { getCards, deleteCard } from '../../services/cardService';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch  } from '@fortawesome/free-solid-svg-icons';
 import CardItem from './cardItem';
 import CardView from './cardView';
+import { getCards } from '../../firebase/cardService';
 import './cards.scss';
 
 class Cards extends Component {
@@ -28,7 +28,8 @@ class Cards extends Component {
         if(user) {
           // console.log('user logged in:', user);
           try {
-              await firebase.firestore().collection('cards').onSnapshot(
+            const cards  = await getCards()
+              cards.onSnapshot(
               snapshot => {
                 this.getData(snapshot.docs)
               }
