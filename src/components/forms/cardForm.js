@@ -41,7 +41,6 @@ class CardForm extends Component {
   cardViewModel(card) {
     return {
         // logo: card.logo,
-        // id: card.id,
         company: card.company,
         slogan: card.slogan,
         fullName: card.fullName,
@@ -71,21 +70,36 @@ class CardForm extends Component {
   }
 
   handleSubmit = async (e) => {
+    const cardId = this.props.match.params.id
     e.preventDefault()
     const { logo, company, slogan, fullName, profession, address1, address2, phone, email, website } = this.state.data  
-
-    db.collection('cards').doc().set({ 
-      // logo: logo,
-      company: company,
-      slogan: slogan,
-      fullName: fullName,
-      profession: profession,
-      phone: this.formatPhoneNumber(phone),
-      email: email,
-      address1: address1,
-      address2: address2,
-      website: website
-    })
+    if(cardId === 'new') {
+      db.collection('cards').doc().set({ 
+        // logo: logo,
+        company: company,
+        slogan: slogan,
+        fullName: fullName,
+        profession: profession,
+        phone: this.formatPhoneNumber(phone),
+        email: email,
+        address1: address1,
+        address2: address2,
+        website: website
+      })
+    } else {
+      db.collection('cards').doc(cardId).set({ 
+        // logo: logo,
+        company: company,
+        slogan: slogan,
+        fullName: fullName,
+        profession: profession,
+        phone: this.formatPhoneNumber(phone),
+        email: email,
+        address1: address1,
+        address2: address2,
+        website: website
+      })
+    }
       // await saveCard(this.state.data)
       
       this.props.history.push('/cards')
