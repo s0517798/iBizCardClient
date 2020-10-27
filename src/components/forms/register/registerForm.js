@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUserFriends, faPlug, faShare  } from '@fortawesome/free-solid-svg-icons';
 import { storage } from '../../../firebase/index';
 import { register } from '../../../firebase/userService';
-import './register.scss'
+import './register.css'
 
 class RegisterForm extends Component {
   state = { 
@@ -47,7 +47,6 @@ class RegisterForm extends Component {
               displayName: displayName
             }).catch(er => {
               let errors = er.message
-              console.log(errors);
               this.setState({ errors })
             })
           }
@@ -90,8 +89,7 @@ class RegisterForm extends Component {
 
   render() {
     const { data, message } = this.state
-    console.log(this.state.data.displayName);
-    console.log('photo',this.state.image);
+
     return ( 
       <div id='register'>
         <div className='register-left'>

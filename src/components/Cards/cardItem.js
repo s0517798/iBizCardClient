@@ -1,42 +1,32 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Avatar from 'react-avatar';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faStar as fullStar } from '@fortawesome/free-solid-svg-icons'
-import { faStar as emptyStar } from '@fortawesome/free-regular-svg-icons'
-
 import { Link } from 'react-router-dom';
+import './cards.css'
 
-class CardItem extends Component {
-
-  render() { 
-    return ( 
-      <div>
-        {this.props.cards.map((card, index) => (
-          <Link
-            to={`/cards/${card.id}`}
-            onClick={() => this.props.selectCardFn(index)} 
-            key={card.id} 
-            className="card-item"
-            selected={this.props.selectedCardIndex === index}
-          >
-            {/* <div className="card-item-details"> */}
-              <div className="card-avatar">
-                <Avatar size="80" color="red" round name={card.data.fullName} />
+const CardItem = ({ cards, onDelete }) => {
+  return (
+    <div id='cardItem'>
+      {cards.map((card) => (
+        <div className='cardItem-container' key={card.id}>
+          <Link to={`/cards/${card.id}`}  className='card-item'>
+            <div className='card-avatar'>
+              <Avatar size='80' color='red' round name={card.fullName} />
+            </div>
+            <div className='card-user'>
+              <div className='card-item-details'>
+                <div>{card.company}</div>
+                <div>{card.fullName}</div>
+                <div>{card.profession}</div>
               </div>
-              <div className="card-user">
-                <div className='card-item-details'>
-                <div>{card.data.company}</div>
-                <div>{card.data.fullName}</div>
-                <div>{card.data.profession}</div>
-                </div>
-                {/* <FontAwesomeIcon onClick={this.props.onFavorite} className='save-card' icon={emptyStar} /> */}
-              </div>
-            {/* </div> */}
+            </div>
           </Link>
-        ))}
-      </div>
-    );
-  }
-}
+          <button onClick={() => onDelete(card.id)} className='card-qr-code'>
+            Delete
+          </button>
+        </div>
+      ))}
+    </div>
+  );
+};
 
 export default CardItem;

@@ -31,23 +31,12 @@
 }
 
 #card-container .card-item {
-  // width: 100%;
-  border: none;
-  text-align: start;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  background-color: #ffffff;
-  color: #000000;
-  margin: 5px;
-  padding: 5px;
-  align-items: center;
-  border-radius: 5px;
-  text-decoration: none;
+
+  
 }
 
 #card-container .card-item:hover {
-  background-color: #ecfaff;
+  /* background-color: #ecfaff; */
 }
 
   #card-container .card-item:focus {
@@ -70,7 +59,7 @@
 
 #card-container .card-item-details {
 
-  // align-items: center;
+
   width: 100%;
 }
 
@@ -107,26 +96,69 @@
     height: fit-content;
   }
 }
+/* //////////////////////// Card Item ////////////////////// */
+#cardItem {
+  background-color: darkseagreen;
+}
+
+#cardItem .cardItem-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: white;
+  border: 1px solid;
+  /* padding: 10px; */
+  border-radius: 10px;
+  margin: 40px;
+  border: none;
+  
+}
+
+#cardItem .card-item {
+  width: 100%;
+  padding: 10px;
+  display: flex;
+  flex-direction: row;
+  color: #000000;
+  /* margin: 5px; */
+  align-items: center;
+  text-decoration: none;
+}
+
+#cardItem .card-item:hover {
+  
+ }
+
+#cardItem button {
+  border: none;
+  padding: 5px 10px;
+  background-color: palevioletred;
+  color: white;
+  border-radius: 5px;
+  margin: 10px;
+}
 
 
 
-//////////////////////// Card View //////////////////////
+/* //////////////////////// Card View ////////////////////// */
 #card-view a {
   text-decoration: none;
   color: inherit;
 }
 #card-view {
+  display: flex;
+  justify-content: center;
   font-family: sans-serif;
   margin: 10px;
   color: #284a85;
-  // background-color: gray;
+  /* // background-color: gray;
   // background-image:
   // radial-gradient(rgb(255, 255, 255), rgba(138,201,214,.7) 200px, transparent 400px),
   // radial-gradient(rgb(189, 196, 198), rgba(255,255,255,.6) 300px, transparent 400px),
   // radial-gradient(rgb(255, 203, 170), rgba(138,201,214,.3) 400px, transparent 400px);
   // background-size: 1000px 500px, 700px 500px, 700px 500px; 
   // background-position: 0 -200px, 300px -100px, 700px -200px;
-  // height: 500px;
+  // height: 500px; */
 }
 
 #card-view .card-view-card:hover {
@@ -138,7 +170,7 @@
   border: 1px solid #88bbd6;
   width: 350px;
   height: 500px;
-  // padding-left: 40px;
+  /* // padding-left: 40px; */
   padding: 20px;
   display: flex;
   flex-direction: column;
@@ -148,7 +180,7 @@
 }
 
 #card-view .card-logo{
-  // margin-top: 20px;
+  /* // margin-top: 20px; */
   text-align: center;
 }
 
@@ -204,7 +236,7 @@
 }
 
 #card-view .card-email-website {
-  // margin-bottom: 60px;
+  /* // margin-bottom: 60px; */
 
 }
 
@@ -224,7 +256,7 @@ background-color: #ff957d;
   height: 25px;
   padding: 2px;
   border-radius: 5px;
-  // border: 1px solid #fdffd4;
+  /* // border: 1px solid #fdffd4; */
   border: 1px solid #000000;
 }
 
@@ -243,7 +275,7 @@ background-color: #ff957d;
    right:auto;
    left:auto;
    bottom: 50px; 
-   width: 100%;
+   width: inherit;
 }  
 
 #share-card-modal .modal-content {

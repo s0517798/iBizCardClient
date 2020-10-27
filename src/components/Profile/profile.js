@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import CardUI from '../old-cards/cardUI';
+// import CardUI from '../old-cards/cardUI';
 import { Link } from 'react-router-dom';
 import { Row, Col } from 'reactstrap';
-import { getCards, deleteCard } from '../../services/cardService';
+// import { getCards, deleteCard } from '../../services/cardService';
 import Avatar from 'react-avatar';
-import { db, storage, auth } from '../../firebase';
-import './profile.scss';
+import { storage } from '../../firebase';
+import './profile.css';
 
 
 class Profile extends Component {
@@ -28,7 +28,6 @@ class Profile extends Component {
     try {
       const user = this.props.user
       const uploadTask = storage.ref(`users/${user.uid}/${image.name}`).put(image)
-      console.log('successfully uploaded', uploadTask);
       this.setState({ uploadTask })
     } catch (ex) {
       const error = ex.message
@@ -38,7 +37,7 @@ class Profile extends Component {
   }
   
   render() { 
-    const { user, displayName, email, photoUrl } = this.props
+    const { displayName, email, photoUrl } = this.props
     return ( 
       <div id='profile'>
         <h1>Profile</h1>
@@ -113,15 +112,3 @@ class Profile extends Component {
 }
 
 export default Profile;
-
-const styles = {
-  addButton: {
-    color: 'red',
-    margin: 0,
-    top: 'auto',
-    bottom: 20,
-    left: 'auto',
-    position: 'fixed'
-  }
-
-}

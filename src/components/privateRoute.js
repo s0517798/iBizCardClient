@@ -26,7 +26,6 @@ let PrivateRoute = (props) => {
     let unlisten = props.history.listen(async () => {
       try{
         const user = await Auth.currentAuthenticatedUser()
-        console.log('user:', user);
       }catch(ex) {
         if(isAuthenticated) {
           setIsAuthenticated(false)

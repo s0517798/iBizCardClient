@@ -1,33 +1,21 @@
 import React, { Component } from 'react';
-import { Row, Col } from 'reactstrap';
-import { Link } from 'react-router-dom';
-import { auth, db } from '../../firebase/index';
+import { auth } from '../../firebase/index';
 import { getCards, deleteCard } from '../../firebase/cardService';
-import firebase from '../../firebase/index'
 import { toast } from 'react-toastify';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSearch  } from '@fortawesome/free-solid-svg-icons';
+import { Row } from 'reactstrap';
 import CardItem from './cardItem';
-import CardView from './cardView';
-import './cards.scss';
+import { db } from '../../firebase/cardService'
+import './cards.css';
 
 class Cards extends Component {
-  constructor() {
-    super()
-    this.state = {
-      selectedCard: null,
-      data: []
+  state = {
+      data: [],
+      message: null
     }
-  }
 
   async componentDidMount() {
-    // const user = auth.getCurrentUser()
-    // if(!user) {
-    //   this.props.history.push('/login')
-    // } else {
       auth.onAuthStateChanged(async user => {
         if(user) {
-          // console.log('user logged in:', user);
           try {
             const cards  = await getCards()
               cards.onSnapshot(
@@ -37,24 +25,21 @@ class Cards extends Component {
             ) 
           } catch (ex) {
             const message = ex.message
-            console.log(message);
             this.setState({ message })
           }
         } else {
           this.setState({ data: []})
         }
       })
-    // }
-
   }
 
   getData = (data) => {
     let cards = []
     data.forEach(doc => {
-      cards.push({
-        id: doc.id,
-        data: doc.data()
-      })
+      cards.push(
+        // id: doc.id,
+        {id: doc.id, ...doc.data()}
+      )
     })
     this.setState({ data: cards })
   }
@@ -66,13 +51,13 @@ class Cards extends Component {
 
   handleDelete = async (card) => {
     const initialCard = this.state.data;
-    const cardId = this.props.match.params.id
 
     const data = initialCard.filter(c => c.id !== card.id)
     this.setState({ data })
 
     try {
-      await deleteCard(cardId)
+      await deleteCard(card)
+      
     } catch (ex) {
       if(ex.response && ex.response.status === 404) {
         toast.error('This card deleted already.')
@@ -93,43 +78,20 @@ class Cards extends Component {
   
   
   render() { 
+    const { data } = this.state
     return ( 
       <div id="card-container" className="the-card">
       <Row className='card-row'>
-        <Col 
-          className='card-list-col'
-          xl="3"
-          lg="4"
-          md="4"
-          sm="0"
-          xs="0"
-        >
-          <div className='search-bar'>
-            <h1 className='search-header'>
-              Cards
-            </h1>
-            <input placeholder='Search Cards'/>
-          </div>
-          <CardItem
-            selectCardFn={this.selectCard}
-            cards={this.state.data}
-            userEmail={this.state.email}
-            selectedCardIndex={this.state.selectedCard}   
-            onFavorite={this.handleFavorite}
-          />
-        </Col>
-        <Col className='card-view-col'
-          xl="9" lg="8" md="8" sm="12" xs="12"
-        >
-          <CardView
-            user={this.state.email}
-            // the index of that current card will be
-            // the current selected card
-            onDelete={this.handleDelete}
-            onShare={this.handleShare}
-            card={this.state.data[this.state.selectedCard]}
-          />
-        </Col>
+        <h1>{this.state.message}</h1>
+        <CardItem 
+          cards={data}
+          props={this.props}
+          onDelete={this.handleDelete}
+        />
+        {/* <CardView 
+          props={this.props}
+          cards={cards}
+        /> */}
       </Row>
     </div>
     );

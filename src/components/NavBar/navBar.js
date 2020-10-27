@@ -12,7 +12,7 @@ const NavBar = ({ user, history }) => {
         <div className='header-nav-right'>
           { !user && (
             <Fragment>
-              <NavLink to='/home' className='header-nav-link'>home</NavLink>
+              <NavLink to='/' className='header-nav-link'>home</NavLink>
               <NavLink to='/about' className='header-nav-link'>about</NavLink>
               <NavLink to='/login' className='header-nav-link'>login</NavLink>
             </Fragment>

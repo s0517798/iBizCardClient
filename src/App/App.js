@@ -11,6 +11,8 @@ import Profile from '../components/Profile/profile';
 import About from '../components/about/about';
 import Logout from '../components/logout';
 import NotFound from '../components/notFound';
+import CardView from '../components/Cards/cardView';
+// import { getCards } from '../firebase/cardService';
 import './App.css';
 
 class App extends Component {
@@ -23,18 +25,27 @@ class App extends Component {
   componentDidMount() {
     auth.onAuthStateChanged(async (user) => {
       if(user) {
-        const { displayName, email } = user
-        this.setState({ user, displayName, email })
-        await storage
-        .ref(`users/${user.uid}/WS.jpg`)
-        .getDownloadURL()
-        .then(photoUrl => {
-          this.setState({ photoUrl })
-        })
+
+        try {
+          const { displayName, email } = user
+          const photoUrl = await storage.ref(`users/${user.uid}/WS.jpg`)
+          .getDownloadURL()
+          this.setState({ photoUrl, user, displayName, email })
+
+           
+        } catch (ex) {
+          const message = ex.message
+          console.log(message);
+          this.setState({ message })
+        }
+      } else {
+        this.setState({ data: []})
       }
     })
     
   }
+
+
   render() {
     const { user, photoUrl, displayName, email } = this.state;
     return ( 
@@ -52,7 +63,7 @@ class App extends Component {
               return <LoginForm {...props} user={user} /> 
             }} />
             <Route path='/about' component={About} />
-            <Route path='/profile/:id' render={props => {
+            <Route path='/profile/:cardId' render={props => {
               if(!user) {
                 return <Redirect to='/login' />
               }
@@ -61,8 +72,10 @@ class App extends Component {
             <Route path='/profile' render={props => <Profile {...props} user={user} photoUrl={photoUrl} displayName={displayName} email={email} />} />
             
             <Route path='/not-found' component={NotFound} />
-            <Route path='/cards/:id' render={props => <Cards {...props} />} />
-            <Route path='/' render={props => {
+            {/* <Route path='/cards/:id' render={props => <Cards {...props} />} /> */}
+            <Route exact path='/cards' render={ props => <Cards user={user} {...props} /> } />
+            <Route exact path='/cards/:cardId' render={ props => <CardView {...props} /> } />
+            <Route exact path='/' render={props => { 
               if(user) {
                 return <Cards {...props} user={user} />
               }

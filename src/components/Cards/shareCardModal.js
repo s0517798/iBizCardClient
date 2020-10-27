@@ -14,7 +14,7 @@ import {
   WhatsappIcon,
   
 } from "react-share";
-import './cards.scss'
+import './cards.css'
 
 const ShareCardModal = () => {
   return ( 

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { Link, Redirect } from 'react-router-dom'
-import './login.scss'
+import { Link } from 'react-router-dom'
 import { login } from '../../../firebase/authService';
+import './login.css'
 
 class LoginForm extends Component {
   state = {
