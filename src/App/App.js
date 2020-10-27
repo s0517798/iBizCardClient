@@ -35,7 +35,6 @@ class App extends Component {
            
         } catch (ex) {
           const message = ex.message
-          console.log(message);
           this.setState({ message })
         }
       } else {
